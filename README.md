@@ -9,6 +9,22 @@ buttons change market without leaving the current product. New visitors to `/`
 see a region chooser; return visits use the saved `regen-region` preference.
 A direct regional URL always takes precedence over a saved preference.
 
+On a first visit to `/`, the site can suggest a region from the connection's
+approximate country using Vercel's
+[`x-vercel-ip-country` header](https://vercel.com/docs/headers/request-headers#x-vercel-ip-country).
+The visitor must accept the suggestion before navigating; the site never
+automatically changes region based on detected country. Dismissing it hides the
+suggestion for the browser session while leaving all seven choices available.
+Only an explicit regional visit/selection is saved as the region preference.
+
+Detection is country-level only: this feature does not request GPS permission,
+store raw IP addresses, or call an external IP lookup service. EU member countries
+map to the EU storefront; the UK is separate. Unsupported/unknown countries,
+localhost, and hosting without Vercel country headers show the ordinary chooser.
+VPNs can affect the suggested country. `lib/region-detection.ts` contains the
+mapping and detection guards; the root page is rendered per request, not cached
+as one visitor's personalized suggestion for everyone.
+
 | Region | Home | Language | Currency |
 | --- | --- | --- | --- |
 | Australia | `/au` | English | AUD |
@@ -56,6 +72,10 @@ npm run build
 The tests cover all seven region/language/currency mappings, regional URL
 construction, product-preserving switches, invalid IDs, localized catalog data,
 and the distinction between approved prices and regional pricing inquiries.
+Country-detection and entry tests also cover all 27 EU members, unsupported
+countries, saved-choice priority, and the dismissal/hosting guards. Component
+tests cover all seven suggestion links, explicit acceptance, session-only
+dismissal, keyboard focus and uniform region-card sizing.
 
 ## Built with v0
 
