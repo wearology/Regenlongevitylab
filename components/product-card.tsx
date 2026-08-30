@@ -3,6 +3,7 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import { ArrowRight } from 'lucide-react'
+import { FdaMedicineReference } from '@/components/fda-medicine-reference'
 import { useRegion } from '@/components/region-provider'
 import type { Product } from '@/lib/products'
 import { catalogCopy, getProductCopy } from '@/lib/product-copy'
@@ -40,6 +41,7 @@ export function ProductCard({ product }: { product: Product }) {
         <p className="mt-2 text-xs leading-relaxed text-muted-foreground">
           {localized.tagline}
         </p>
+        <FdaMedicineReference product={product} />
         <div className="mt-auto flex flex-wrap items-baseline gap-x-1.5 gap-y-1 pt-3">
           <span className="font-display text-base font-bold text-primary sm:text-lg">
             {showStartingPrice && <><span className="block text-xs font-medium text-muted-foreground">mulai dari</span>{' '}</>}
