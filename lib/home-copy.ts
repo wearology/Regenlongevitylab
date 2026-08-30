@@ -32,7 +32,6 @@ type HomeCopy = {
     rating: string
     isSample?: boolean
     sampleNotice?: string
-    sampleLabel?: string
     items: readonly { body: string; initial: string; name: string; detail: string }[]
   }
   lab: { label: string; heading: string; body: string }
@@ -211,11 +210,10 @@ export const homeCopy: Record<Language, HomeCopy> = {
       ],
     },
     reviews: {
-      heading: 'Contoh Adaptasi Ulasan Eropa',
+      heading: 'Cerita tentang Regen',
       rating: '',
       isSample: true,
-      sampleNotice: 'Komentar berikut adalah contoh parafrasa bahasa Indonesia dari teks ulasan di situs Regen versi Eropa. Nama, usia, dan profesinya fiktif; bukan testimoni pelanggan Indonesia asli atau rekomendasi tenaga kesehatan.',
-      sampleLabel: 'Contoh adaptasi · Profil fiktif',
+      sampleNotice: 'Diadaptasi dari teks ulasan Eropa. Nama, usia, dan profesi rekaan; bukan testimoni pelanggan Indonesia atau rekomendasi tenaga kesehatan.',
       items: [
         { body: 'Yang bikin saya yakin justru konsultasinya. Saya datang dengan daftar pertanyaan, lalu jadi paham apa yang mau dipesan, bukan sekadar nebak-nebak.', initial: 'A', name: 'Aditya', detail: '38 tahun · Manajer operasional klinik' },
         { body: 'Kotaknya sampai masih dingin, ice pack masih beku, dan semua segelnya utuh. Jujur, saya nggak menyangka packaging-nya seteliti ini.', initial: 'N', name: 'Nadia', detail: '32 tahun · Perawat' },
@@ -223,8 +221,8 @@ export const homeCopy: Record<Language, HomeCopy> = {
         { body: 'Awalnya saya cukup skeptis, jujur. Tapi prosesnya terasa meyakinkan: kode verifikasinya valid, dan buku panduannya bikin langkah-langkahnya mudah diikuti.', initial: 'L', name: 'Laras', detail: '30 tahun · Ahli gizi' },
         { body: 'Sebagai praktisi, saya butuh dokumentasi, bukan sekadar marketing. Regen mengirim Certificate of Analysis (COA) tanpa perlu saya minta dua kali. Hal seperti ini yang bikin saya percaya.', initial: 'R', name: 'Ratna', detail: '42 tahun · Apoteker klinis' },
         { body: 'Setup pen-nya ternyata gampang. Kliknya presisi, jadi saya tahu persis dosis yang disetel.', initial: 'A', name: 'Arif', detail: '36 tahun · Fisioterapis' },
-        { body: 'Waktu pengiriman saya tertahan, support membalas dalam hitungan menit. Saya terus dikabari sampai masalahnya beres. Buat saya, hal kecil seperti ini penting.', initial: 'M', name: 'Maya', detail: '35 tahun · Koordinator layanan pasien' },
-        { body: 'Saya sudah menjalankan protokol ini selama beberapa bulan. Yang bikin saya tetap memilih Regen adalah konsistensi dari batch ke batch. Nggak ada kejutan.', initial: 'R', name: 'Reza', detail: '40 tahun · Dokter umum' },
+        { body: 'Waktu pengiriman saya tertahan, support membalas dalam hitungan menit. Saya terus dikabari sampai masalahnya beres. Buat saya, hal kecil seperti ini penting.', initial: 'M', name: 'Maya', detail: '35 tahun · Instruktur binaraga (PT)' },
+        { body: 'Saya sudah menjalankan protokol ini selama beberapa bulan. Yang bikin saya tetap memilih Regen adalah konsistensi dari batch ke batch. Nggak ada surprise.', initial: 'R', name: 'Reza', detail: '40 tahun · Dokter umum' },
         { body: 'Bersih, nggak ribet, dan sampai tepat waktu. Packaging cold-chain-nya memang bagus banget.', initial: 'I', name: 'Intan', detail: '28 tahun · Praktisi wellness' },
       ],
     },

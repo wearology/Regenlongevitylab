@@ -11,14 +11,19 @@ export function Reviews() {
   const isSample = copy.isSample === true
 
   return (
-    <section id="ulasan" aria-labelledby="reviews-heading" className="bg-secondary py-16 md:py-24">
+    <section
+      id="ulasan"
+      aria-labelledby="reviews-heading"
+      aria-describedby={isSample ? 'reviews-notice' : undefined}
+      className="bg-secondary py-16 md:py-24"
+    >
       <div className="mx-auto w-full max-w-6xl px-4 sm:px-6">
         <Reveal className="mx-auto max-w-2xl text-center">
           <h2 id="reviews-heading" className="heading-gradient text-balance font-display text-3xl font-bold tracking-tight sm:text-4xl">
             {copy.heading}
           </h2>
           {isSample ? (
-            <p role="note" className="mt-4 rounded-xl border border-primary/15 bg-background/70 p-4 text-sm leading-relaxed text-muted-foreground">
+            <p id="reviews-notice" role="note" className="mt-4 text-sm leading-relaxed text-muted-foreground">
               {copy.sampleNotice}
             </p>
           ) : (
@@ -44,18 +49,14 @@ export function Reviews() {
               key={review.name + review.detail}
               className="flex flex-col rounded-2xl border border-border bg-card p-6"
             >
-              {isSample ? (
-                <span className="self-start rounded-full bg-secondary px-2.5 py-1 text-xs font-medium text-primary">
-                  {copy.sampleLabel}
-                </span>
-              ) : (
+              {!isSample && (
                 <span className="flex" aria-hidden="true">
                   {Array.from({ length: 5 }).map((_, i) => (
                     <Star key={i} className="size-4 fill-accent text-accent" />
                   ))}
                 </span>
               )}
-              <p className="mt-4 flex-1 text-sm leading-relaxed text-foreground/90">
+              <p className={`flex-1 text-sm leading-relaxed text-foreground/90${isSample ? '' : ' mt-4'}`}>
                 {review.body}
               </p>
               <div className="mt-6 flex items-center gap-3">
