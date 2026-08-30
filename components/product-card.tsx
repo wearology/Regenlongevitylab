@@ -39,7 +39,7 @@ export function ProductCard({ product }: { product: Product }) {
         </p>
         <div className="mt-auto flex flex-wrap items-baseline gap-x-1.5 gap-y-1 pt-3">
           <span className="font-display text-base font-bold text-primary sm:text-lg">
-            {getRegionalPriceLabel(region, 'cartridge')}
+            {getRegionalPriceLabel(region, product.slug, 'cartridge')}
           </span>
           <span className="text-xs text-muted-foreground">/ {copy.variants.cartridge.label.toLowerCase()}</span>
         </div>

@@ -136,7 +136,7 @@ export function ProductDetail({ product }: { product: Product }) {
 
             <div className="mt-5 flex flex-wrap items-baseline gap-2" aria-live="polite">
               <span className="font-display text-2xl font-bold text-primary sm:text-3xl">
-                {getRegionalPriceLabel(region, variant)}
+                {getRegionalPriceLabel(region, product.slug, variant)}
               </span>
               <span className="text-sm text-muted-foreground">
                 / {active.label.toLowerCase()}
@@ -170,7 +170,7 @@ export function ProductDetail({ product }: { product: Product }) {
                         {copy.variants[v.id].label}
                       </span>
                       <span className="mt-1 font-display text-base font-bold text-primary sm:text-lg">
-                        {getRegionalPriceLabel(region, v.id)}
+                        {getRegionalPriceLabel(region, product.slug, v.id)}
                       </span>
                       <span className="mt-1 text-xs leading-snug text-muted-foreground">
                         {copy.variants[v.id].note}
@@ -187,7 +187,7 @@ export function ProductDetail({ product }: { product: Product }) {
 
             <ConsultationButton
               size="lg"
-              productName={product.name}
+              productName={region.id === 'id' ? `${product.name} — ${active.label}` : product.name}
               className="mt-6 w-full gap-2 bg-accent text-accent-foreground hover:bg-accent/90"
             >
               <MessageCircle className="size-4" aria-hidden="true" />

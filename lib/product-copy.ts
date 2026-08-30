@@ -196,14 +196,14 @@ export const catalogCopy: Record<Language, CatalogCopy> = {
     recommendedBody: 'Lihat peptides lainnya untuk riset laboratorium di katalog Regen.',
     usps: ['Dokumen lab', 'COA per batch', 'Tanya soal pengiriman', 'Support riset'],
     variants: {
-      cartridge: { label: 'Cartridge', note: 'Cartridge refill untuk Regen Pen yang kompatibel.', alt: 'isi paket cartridge' },
+      cartridge: { label: 'Cartridge Set', note: 'Cartridge refill untuk Regen Pen yang kompatibel.', alt: 'isi cartridge set' },
       pen: { label: 'Paket Pen', note: 'Pen yang sudah terisi, khusus untuk riset laboratorium.', alt: 'isi paket pen' },
     },
     imageAlt: 'cartridge untuk riset laboratorium',
     formatsHeading: 'Standar kualitas yang sama. Dua format riset.',
     formatsBody: 'Pilih antara cartridge atau pen. Kami bantu cek kecocokan perangkat dan ketersediaan produk untuk kebutuhan risetmu.',
     formats: {
-      cartridge: { name: 'Format Cartridge', body: 'Cartridge refill untuk riset dengan perangkat Regen Pen yang kompatibel. Kami bantu cek kecocokan perangkat dan detail produknya.' },
+      cartridge: { name: 'Cartridge Set', body: 'Cartridge refill untuk riset dengan perangkat Regen Pen yang kompatibel. Kami bantu cek kecocokan perangkat dan detail produknya.' },
       pen: { name: 'Paket Pen', body: 'Pen yang sudah terisi untuk riset laboratorium. Tanyakan isi paket, cara penanganan, dan ketersediaan di region kamu ke tim kami.' },
     },
   },
