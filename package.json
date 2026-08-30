@@ -6,6 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
+    "test:regions": "node --test lib/regions.test.mjs lib/region-pricing.test.mjs lib/regional-routing.test.mjs",
     "lint": "eslint ."
   },
   "dependencies": {

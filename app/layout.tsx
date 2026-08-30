@@ -1,9 +1,12 @@
 import { Analytics } from '@vercel/analytics/next'
 import type { Metadata, Viewport } from 'next'
 import { Archivo, IBM_Plex_Sans } from 'next/font/google'
+import { headers } from 'next/headers'
 import { LoadingScreen } from '@/components/loading-screen'
 import { SmoothScroll } from '@/components/smooth-scroll'
 import { ConsultationProvider } from '@/components/consultation-modal'
+import { RegionProvider } from '@/components/region-provider'
+import { DEFAULT_REGION, REGION_HEADER, getRegion } from '@/lib/regions'
 import './globals.css'
 
 const ibmPlexSans = IBM_Plex_Sans({
@@ -21,6 +24,12 @@ const archivo = Archivo({
 })
 
 export const metadata: Metadata = {
+  metadataBase: new URL(
+    process.env.NEXT_PUBLIC_SITE_URL ||
+    (process.env.VERCEL_PROJECT_PRODUCTION_URL || process.env.VERCEL_URL
+      ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL || process.env.VERCEL_URL}`
+      : 'http://localhost:3000'),
+  ),
   title: 'Regen — Regenerative Science. Clearly Delivered.',
   description:
     'Regen develops and delivers advanced peptide therapies with uncompromising quality, traceability, and clinical precision.',
@@ -49,20 +58,23 @@ export const viewport: Viewport = {
   themeColor: '#003f35',
 }
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode
 }>) {
+  const region = getRegion((await headers()).get(REGION_HEADER))
   return (
     <html
-      lang="en"
+      lang={region?.locale ?? 'en'}
       className={`light bg-background ${ibmPlexSans.variable} ${archivo.variable}`}
     >
       <body className="font-sans antialiased">
         <LoadingScreen />
         <SmoothScroll />
-        <ConsultationProvider>{children}</ConsultationProvider>
+        <RegionProvider initialRegion={region?.id ?? DEFAULT_REGION}>
+          <ConsultationProvider>{children}</ConsultationProvider>
+        </RegionProvider>
         {process.env.NODE_ENV === 'production' && <Analytics />}
       </body>
     </html>

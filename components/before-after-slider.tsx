@@ -2,9 +2,13 @@
 
 import { useState } from 'react'
 import { ChevronsLeftRight } from 'lucide-react'
+import { useRegion } from '@/components/region-provider'
+import { homeCopy } from '@/lib/home-copy'
 
 export function BeforeAfterSlider() {
   const [position, setPosition] = useState(50)
+  const { language } = useRegion()
+  const copy = homeCopy[language].slider
 
   const imageStyle = {
     backgroundImage: 'url("/transformation.jpeg")',
@@ -36,10 +40,10 @@ export function BeforeAfterSlider() {
       </div>
 
       <span className="absolute left-4 top-4 rounded-full bg-black/65 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-white backdrop-blur-sm">
-        Before
+        {copy.before}
       </span>
       <span className="absolute right-4 top-4 rounded-full bg-black/65 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-white backdrop-blur-sm">
-        After
+        {copy.after}
       </span>
 
       <div
@@ -58,8 +62,8 @@ export function BeforeAfterSlider() {
         max="99"
         value={position}
         onChange={(event) => setPosition(Number(event.target.value))}
-        aria-label="Before and after image comparison"
-        aria-valuetext={`${position}% before, ${100 - position}% after`}
+        aria-label={copy.label}
+        aria-valuetext={`${position}% ${copy.before.toLowerCase()}, ${100 - position}% ${copy.after.toLowerCase()}`}
         className="absolute inset-0 z-20 h-full w-full cursor-ew-resize opacity-0"
       />
     </div>

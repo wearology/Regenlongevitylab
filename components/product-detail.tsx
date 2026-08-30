@@ -7,23 +7,24 @@ import {
   ArrowLeft,
   FlaskConical,
   FileCheck2,
-  Snowflake,
+  Truck,
   Headset,
   MessageCircle,
 } from 'lucide-react'
 import { ConsultationButton } from '@/components/consultation-button'
+import { useRegion } from '@/components/region-provider'
 import { VARIANTS, type Product, type VariantId } from '@/lib/products'
+import { catalogCopy, getProductCopy } from '@/lib/product-copy'
+import { getRegionalPriceLabel } from '@/lib/region-pricing'
 
-const usps = [
-  { icon: FlaskConical, label: 'European Laboratory Tested' },
-  { icon: FileCheck2, label: 'Batch-specific COA' },
-  { icon: Snowflake, label: 'Cold Chain Shipping' },
-  { icon: Headset, label: 'Scientific Support' },
-]
+const uspIcons = [FlaskConical, FileCheck2, Truck, Headset]
 
 export function ProductDetail({ product }: { product: Product }) {
+  const { region, language, href } = useRegion()
+  const copy = catalogCopy[language]
+  const localized = getProductCopy(product, language)
   const [variant, setVariant] = useState<VariantId>('cartridge')
-  const active = VARIANTS.find((v) => v.id === variant) ?? VARIANTS[0]
+  const active = copy.variants[variant]
 
   // Each product has three image slides: the cartridge package (primary on
   // entry), the pen package, and the individual product shot. The first two
@@ -35,17 +36,17 @@ export function ProductDetail({ product }: { product: Product }) {
   }[] = [
     {
       src: '/products/cartridge-package.jpeg',
-      alt: `Regen ${product.name} cartridge package contents`,
+      alt: `Regen ${product.name} — ${copy.variants.cartridge.alt}`,
       variant: 'cartridge',
     },
     {
       src: '/products/pen-package.jpeg',
-      alt: `Regen ${product.name} pen package contents`,
+      alt: `Regen ${product.name} — ${copy.variants.pen.alt}`,
       variant: 'pen',
     },
     {
       src: product.image || '/placeholder.svg',
-      alt: `Regen ${product.name} pre-filled cartridge`,
+      alt: `Regen ${product.name} — ${copy.imageAlt}`,
       variant: null,
     },
   ]
@@ -68,11 +69,11 @@ export function ProductDetail({ product }: { product: Product }) {
     <section className="bg-background pt-28 pb-16 md:pt-32 md:pb-24">
       <div className="mx-auto w-full max-w-6xl px-4 sm:px-6">
         <Link
-          href="/#katalog"
+          href={href('#katalog')}
           className="inline-flex items-center gap-2 text-sm font-medium text-muted-foreground transition-colors hover:text-primary"
         >
-          <ArrowLeft className="size-4" />
-          Back to catalog
+          <ArrowLeft className="size-4" aria-hidden="true" />
+          {copy.backToCatalog}
         </Link>
 
         <div className="mt-6 grid gap-10 lg:grid-cols-2 lg:gap-12">
@@ -97,7 +98,7 @@ export function ProductDetail({ product }: { product: Product }) {
                     key={img.src}
                     type="button"
                     onClick={() => selectImage(idx)}
-                    aria-label={`View ${img.alt}`}
+                    aria-label={`${copy.viewImage} ${img.alt}`}
                     aria-pressed={selected}
                     className={`relative aspect-square overflow-hidden rounded-xl border bg-card transition-all ${
                       selected
@@ -116,37 +117,40 @@ export function ProductDetail({ product }: { product: Product }) {
                 )
               })}
             </div>
+            <p className="text-xs leading-relaxed text-muted-foreground">
+              {copy.photoNotice}
+            </p>
           </div>
 
           {/* Right: product info */}
           <div className="flex flex-col">
             <span className="text-xs font-semibold uppercase tracking-wider text-accent">
-              {product.category}
+              {localized.category}
             </span>
             <h1 className="mt-2 text-balance font-display text-3xl font-bold leading-tight tracking-tight text-foreground sm:text-4xl">
               {product.name}
             </h1>
             <p className="mt-4 text-pretty leading-relaxed text-muted-foreground">
-              {product.description}
+              {localized.description}
             </p>
 
-            <div className="mt-5 flex items-baseline gap-2">
-              <span className="font-display text-3xl font-bold text-primary">
-                {active.price}
+            <div className="mt-5 flex flex-wrap items-baseline gap-2" aria-live="polite">
+              <span className="font-display text-2xl font-bold text-primary sm:text-3xl">
+                {getRegionalPriceLabel(region, variant)}
               </span>
               <span className="text-sm text-muted-foreground">
                 / {active.label.toLowerCase()}
               </span>
             </div>
             <p className="mt-1 text-xs text-muted-foreground">
-              Dosing reference: {product.dosage}
+              {copy.labelReference}: {localized.dosage}
             </p>
 
             {/* Variant selector */}
-            <div className="mt-6">
-              <span className="text-sm font-medium text-foreground">
-                Choose your format
-              </span>
+            <fieldset className="mt-6">
+              <legend className="text-sm font-medium text-foreground">
+                {copy.selectFormat}
+              </legend>
               <div className="mt-3 grid grid-cols-2 gap-3">
                 {VARIANTS.map((v) => {
                   const selected = v.id === variant
@@ -163,43 +167,50 @@ export function ProductDetail({ product }: { product: Product }) {
                       }`}
                     >
                       <span className="font-display text-sm font-semibold text-foreground">
-                        {v.label}
+                        {copy.variants[v.id].label}
                       </span>
-                      <span className="mt-1 font-display text-lg font-bold text-primary">
-                        {v.price}
+                      <span className="mt-1 font-display text-base font-bold text-primary sm:text-lg">
+                        {getRegionalPriceLabel(region, v.id)}
                       </span>
                       <span className="mt-1 text-xs leading-snug text-muted-foreground">
-                        {v.note}
+                        {copy.variants[v.id].note}
                       </span>
                     </button>
                   )
                 })}
               </div>
-            </div>
+            </fieldset>
+
+            <p className="mt-4 text-xs leading-relaxed text-muted-foreground">
+              {copy.priceNotice}
+            </p>
 
             <ConsultationButton
               size="lg"
               productName={product.name}
               className="mt-6 w-full gap-2 bg-accent text-accent-foreground hover:bg-accent/90"
             >
-              <MessageCircle className="size-4" />
-              Order &amp; Consultation
+              <MessageCircle className="size-4" aria-hidden="true" />
+              {copy.orderConsultation}
             </ConsultationButton>
 
             {/* USP icons row */}
             <ul className="mt-8 grid grid-cols-2 gap-x-4 gap-y-4 border-t border-border pt-6 sm:grid-cols-4">
-              {usps.map((usp) => (
+              {uspIcons.map((Icon, index) => (
                 <li
-                  key={usp.label}
+                  key={copy.usps[index]}
                   className="flex flex-col items-center gap-2 text-center sm:items-start sm:text-left"
                 >
-                  <usp.icon className="size-5 text-accent" aria-hidden="true" />
+                  <Icon className="size-5 text-accent" aria-hidden="true" />
                   <span className="text-xs leading-snug text-muted-foreground">
-                    {usp.label}
+                    {copy.usps[index]}
                   </span>
                 </li>
               ))}
             </ul>
+            <p className="mt-6 rounded-xl border border-border bg-muted/50 p-4 text-xs font-semibold leading-relaxed text-foreground">
+              {copy.researchOnly}
+            </p>
           </div>
         </div>
       </div>

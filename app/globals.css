@@ -167,6 +167,12 @@
   body {
     @apply bg-background text-foreground;
   }
+  html {
+    scroll-padding-top: 5rem;
+  }
+  body:has(dialog[open]) {
+    overflow: hidden;
+  }
 }
 
 /* Regen Forest heading treatment for light surfaces. */

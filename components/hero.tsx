@@ -1,26 +1,28 @@
 "use client"
 
 import { FlaskConical, Headset, Truck } from "lucide-react"
-import { motion } from "framer-motion"
+import { motion, type Variants } from "framer-motion"
 import { Button } from "@/components/ui/button"
 import { ConsultationButton } from "@/components/consultation-button"
+import { useRegion } from "@/components/region-provider"
+import { homeCopy, regionHeroCopy } from "@/lib/home-copy"
 
-const trust = [
-  { icon: FlaskConical, label: "Lab-tested before every shipment." },
-  { icon: Headset, label: "24/7 customer support." },
-  { icon: Truck, label: "Secure, temperature-controlled delivery." },
-]
+const trustIcons = [FlaskConical, Headset, Truck]
 
-const container = {
+const container: Variants = {
   hidden: {},
   show: { transition: { staggerChildren: 0.12, delayChildren: 0.1 } },
 }
-const item = {
+const item: Variants = {
   hidden: { opacity: 0, y: 24 },
   show: { opacity: 1, y: 0, transition: { duration: 0.7, ease: [0.22, 1, 0.36, 1] } },
 }
 
 export function Hero() {
+  const { region, language } = useRegion()
+  const copy = homeCopy[language]
+  const introduction = regionHeroCopy[region.id]
+
   return (
     <section
       id="beranda"
@@ -43,21 +45,32 @@ export function Hero() {
             initial="hidden"
             animate="show"
           >
-            <motion.p variants={item} className="max-w-xl text-sm font-medium text-muted-foreground">
-              Trusted and used by influencers, physicians, and wellness practitioners.
-            </motion.p>
+            <motion.div variants={item} className="mb-6 flex flex-wrap items-center gap-x-3 gap-y-2">
+              <p className="flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.18em] text-primary">
+                <span aria-hidden="true" className="size-1.5 rounded-full bg-accent" />
+                Regen / {region.nativeName}
+              </p>
+              <span
+                className="rounded-full border border-primary/15 bg-white/60 px-2.5 py-1 text-[11px] font-medium text-primary/75"
+                title={`${copy.hero.settings}: ${region.currency}, ${region.languageName}`}
+              >
+                {region.currency} · {region.languageName}
+              </span>
+            </motion.div>
             <motion.h1
               variants={item}
               className="mt-5 max-w-xl text-balance font-display text-4xl font-bold leading-[1.1] tracking-tight text-primary sm:text-5xl lg:text-6xl"
             >
-              European research-grade peptides, <span className="text-accent">delivered with precision.</span>
+              {introduction.headline} <span className="text-accent">{introduction.accent}</span>
             </motion.h1>
             <motion.p
               variants={item}
               className="mt-6 max-w-xl text-pretty text-base leading-relaxed text-muted-foreground sm:text-lg"
             >
-              Research peptides for fat loss, muscle gain, regeneration &amp; lifespan, recovery, and cognitive focus —
-              all on one platform.
+              {copy.hero.body}
+            </motion.p>
+            <motion.p variants={item} className="mt-4 max-w-xl text-sm font-medium text-muted-foreground">
+              {copy.hero.trusted}
             </motion.p>
 
             <motion.div variants={item} className="mt-8 flex flex-col gap-3 sm:flex-row">
@@ -66,14 +79,14 @@ export function Hero() {
                 size="lg"
                 className="bg-accent text-accent-foreground hover:bg-accent/90"
               >
-                View Catalog
+                {copy.viewCatalog}
               </Button>
               <ConsultationButton
                 size="lg"
                 variant="outline"
                 className="border-primary/25 bg-transparent text-primary hover:bg-primary/5 hover:text-primary"
               >
-                Free Consultation
+                {copy.freeConsultation}
               </ConsultationButton>
             </motion.div>
           </motion.div>
@@ -108,15 +121,18 @@ export function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1], delay: 0.5 }}
         >
-          {trust.map((t) => (
-            <li
-              key={t.label}
-              className="flex items-center gap-3 rounded-xl border border-border/70 bg-white/70 px-4 py-3 shadow-sm backdrop-blur-sm"
-            >
-              <t.icon className="size-5 shrink-0 text-accent" />
-              <span className="text-sm text-foreground/80">{t.label}</span>
-            </li>
-          ))}
+          {copy.hero.trust.map((label, index) => {
+            const Icon = trustIcons[index]
+            return (
+              <li
+                key={label}
+                className="flex items-center gap-3 rounded-xl border border-border/70 bg-white/70 px-4 py-3 shadow-sm backdrop-blur-sm"
+              >
+                <Icon className="size-5 shrink-0 text-accent" aria-hidden="true" />
+                <span className="text-sm text-foreground/80">{label}</span>
+              </li>
+            )
+          })}
         </motion.ul>
       </div>
     </section>

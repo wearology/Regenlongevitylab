@@ -1,9 +1,11 @@
 'use client'
 
-import { useState } from 'react'
+import { useId, useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import { ChevronDown, ExternalLink, FileText } from 'lucide-react'
 import { LabDocumentViewer } from '@/components/lab-document-viewer'
+import { useRegion } from '@/components/region-provider'
+import { homeCopy } from '@/lib/home-copy'
 import type { LabDocument } from '@/lib/verify-codes'
 
 /**
@@ -19,6 +21,9 @@ export function LabDocumentsDisclosure({
   defaultOpen?: boolean
 }) {
   const [open, setOpen] = useState(defaultOpen)
+  const panelId = useId()
+  const { language } = useRegion()
+  const copy = homeCopy[language].documents
 
   if (documents.length === 0) return null
 
@@ -28,13 +33,13 @@ export function LabDocumentsDisclosure({
         type="button"
         onClick={() => setOpen((v) => !v)}
         aria-expanded={open}
-        aria-controls="lab-documents-panel"
+        aria-controls={panelId}
         className="flex w-full items-center justify-between gap-3 rounded-xl border border-border bg-secondary px-4 py-3.5 text-left transition-colors hover:bg-secondary/70"
       >
         <span className="flex items-center gap-2.5">
           <FileText className="size-4 shrink-0 text-primary" aria-hidden="true" />
           <span className="text-sm font-semibold text-secondary-foreground">
-            COA and other Lab testing documents
+            {copy.heading}
           </span>
         </span>
         <motion.span
@@ -52,7 +57,7 @@ export function LabDocumentsDisclosure({
       <AnimatePresence initial={false}>
         {open && (
           <motion.div
-            id="lab-documents-panel"
+            id={panelId}
             initial={{ height: 0, opacity: 0 }}
             animate={{ height: 'auto', opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
@@ -87,7 +92,7 @@ export function LabDocumentsDisclosure({
                               {link.label}
                             </span>
                             <span className="text-xs text-muted-foreground">
-                              Verify on Janoshik website
+                              {copy.verify}
                             </span>
                           </span>
                           <ExternalLink

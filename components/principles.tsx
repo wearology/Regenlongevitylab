@@ -1,39 +1,28 @@
+'use client'
+
 import { Button } from '@/components/ui/button'
 import { Reveal, Stagger, StaggerItem } from '@/components/reveal'
-
-const principles = [
-  {
-    no: '01',
-    title: 'Controlled Quality',
-    body: 'No products of unclear origin. Every batch is produced in manufacturing facilities that meet European quality standards, with strict quality control.',
-  },
-  {
-    no: '02',
-    title: 'Free 24/7 Consultation',
-    body: 'Our team helps you choose the right product and protocol before you buy. No cost, no pressure.',
-  },
-  {
-    no: '03',
-    title: 'Full Transparency',
-    body: 'Product specifications are verifiable for every order. You know exactly what you are working with.',
-  },
-]
+import { useRegion } from '@/components/region-provider'
+import { homeCopy } from '@/lib/home-copy'
 
 export function Principles() {
+  const { language } = useRegion()
+  const copy = homeCopy[language]
+
   return (
     <section className="bg-foreground py-16 text-background md:py-24">
       <div className="mx-auto w-full max-w-6xl px-4 sm:px-6">
         <Reveal>
           <h2 className="heading-gradient-light max-w-2xl text-balance font-display text-3xl font-bold tracking-tight sm:text-4xl">
-            Built for those serious about regeneration &amp; lifespan
+            {copy.principles.heading}
           </h2>
         </Reveal>
 
         <Stagger className="mt-12 grid gap-10 md:grid-cols-3">
-          {principles.map((item) => (
-            <StaggerItem key={item.no}>
+          {copy.principles.items.map((item, index) => (
+            <StaggerItem key={item.title}>
               <span className="font-display text-4xl font-bold text-accent">
-                {item.no}
+                {String(index + 1).padStart(2, '0')}
               </span>
               <h3 className="mt-4 font-display text-xl font-semibold">
                 {item.title}
@@ -51,7 +40,7 @@ export function Principles() {
             size="lg"
             className="bg-accent text-accent-foreground hover:bg-accent/90"
           >
-            View Catalog
+            {copy.viewCatalog}
           </Button>
         </div>
       </div>

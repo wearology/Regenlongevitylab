@@ -1,54 +1,14 @@
-import type { Metadata } from 'next'
-import { notFound } from 'next/navigation'
-import { SiteHeader } from '@/components/site-header'
-import { SiteFooter } from '@/components/site-footer'
-import { ProductDetail } from '@/components/product-detail'
-import { Formats } from '@/components/formats'
-import { LabTesting } from '@/components/lab-testing'
-import { Reviews } from '@/components/reviews'
-import { RecommendedProducts } from '@/components/recommended-products'
-import { Faq } from '@/components/faq'
-import { getProduct, products } from '@/lib/products'
+import { cookies } from 'next/headers'
+import { notFound, redirect } from 'next/navigation'
+import { getProduct } from '@/lib/products'
+import { DEFAULT_REGION, REGION_COOKIE, getRegion, regionPath } from '@/lib/regions'
 
-export function generateStaticParams() {
-  return products.map((product) => ({ slug: product.slug }))
-}
-
-export async function generateMetadata({
-  params,
-}: {
-  params: Promise<{ slug: string }>
-}): Promise<Metadata> {
-  const { slug } = await params
-  const product = getProduct(slug)
-  if (!product) return { title: 'Product not found — Regen' }
-  return {
-    title: `${product.name} — Regen`,
-    description: product.description,
-  }
-}
-
-export default async function ProductPage({
-  params,
-}: {
+// Old shared URLs stay valid and respect the visitor's saved region.
+export default async function LegacyProductPage({ params }: {
   params: Promise<{ slug: string }>
 }) {
   const { slug } = await params
-  const product = getProduct(slug)
-  if (!product) notFound()
-
-  return (
-    <div className="flex min-h-dvh flex-col">
-      <SiteHeader forceSolid />
-      <main className="flex-1">
-        <ProductDetail product={product} />
-        <Formats />
-        <LabTesting />
-        <Reviews />
-        <RecommendedProducts currentSlug={product.slug} />
-        <Faq />
-      </main>
-      <SiteFooter />
-    </div>
-  )
+  if (!getProduct(slug)) notFound()
+  const region = getRegion((await cookies()).get(REGION_COOKIE)?.value)
+  redirect(regionPath(region?.id ?? DEFAULT_REGION, `/product/${slug}`))
 }

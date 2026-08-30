@@ -1,8 +1,15 @@
+'use client'
+
 import { Check, MessageCircle, ShieldCheck } from 'lucide-react'
 import { ConsultationButton } from '@/components/consultation-button'
 import { Reveal } from '@/components/reveal'
+import { useRegion } from '@/components/region-provider'
+import { SUPPORT_COPY } from '@/lib/support-copy'
 
 export function Consultation() {
+  const { language } = useRegion()
+  const copy = SUPPORT_COPY[language].consultation
+
   return (
     <section
       id="konsultasi"
@@ -11,22 +18,16 @@ export function Consultation() {
       <div className="mx-auto grid w-full max-w-6xl gap-12 px-4 sm:px-6 lg:grid-cols-2 lg:items-center">
         <Reveal>
           <span className="text-sm font-semibold uppercase tracking-wider text-accent">
-            Free Consultation
+            {copy.eyebrow}
           </span>
           <h2 className="heading-gradient-light mt-3 text-balance font-display text-3xl font-bold tracking-tight sm:text-4xl">
-            Talk to our team before you order
+            {copy.title}
           </h2>
           <p className="mt-4 max-w-md text-pretty leading-relaxed text-primary-foreground/80">
-            Tell us your goals and our team will help build the product and
-            protocol recommendations that suit you best. No cost, no obligation
-            to buy.
+            {copy.description}
           </p>
           <ul className="mt-6 flex flex-col gap-3 text-sm text-primary-foreground/90">
-            {[
-              'Personalized product recommendations',
-              'Protocol and dosing guidance',
-              '24/7 aftersales support',
-            ].map((point) => (
+            {copy.points.map((point) => (
               <li key={point} className="flex items-center gap-3">
                 <Check className="size-5 shrink-0 text-accent" />
                 {point}
@@ -41,22 +42,20 @@ export function Consultation() {
               <ShieldCheck className="size-6" />
             </span>
             <h3 className="mt-5 font-display text-xl font-semibold">
-              Verified, secure consultation
+              {copy.cardTitle}
             </h3>
             <p className="mt-3 leading-relaxed text-primary-foreground/80">
-              Start your consultation directly with our official team on
-              WhatsApp. We&apos;ll confirm our official contact number before you
-              share any details, so you&apos;re always protected from scams.
+              {copy.cardDescription}
             </p>
             <ConsultationButton
               size="lg"
               className="mt-6 w-full gap-2 bg-accent text-accent-foreground hover:bg-accent/90"
             >
               <MessageCircle className="size-4" />
-              Start Free Consultation
+              {copy.start}
             </ConsultationButton>
             <p className="mt-4 text-center text-xs text-primary-foreground/60">
-              Your data is safe and used only for consultation purposes.
+              {copy.privacy}
             </p>
           </div>
         </Reveal>

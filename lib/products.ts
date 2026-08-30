@@ -1,34 +1,26 @@
 // Shared product catalog data used by the homepage catalog, product cards,
 // and the dedicated product pages.
 
-// Variant pricing is uniform across the catalog.
-// Converted from IDR at a reference rate of 1 EUR = 17,500 IDR.
-//   Cartridge: IDR 2,500,000  ->  EUR 143
-//   Pen Package: IDR 3,500,000 -> EUR 200
-export const CARTRIDGE_PRICE = '€143'
-export const PEN_PRICE = '€200'
-
 export type VariantId = 'cartridge' | 'pen'
 
 export interface ProductVariant {
   id: VariantId
   label: string
-  price: string
   note: string
 }
 
+// Display copy is localized in product-copy.ts; market prices belong in
+// region-pricing.ts so an unapproved currency is never silently converted.
 export const VARIANTS: ProductVariant[] = [
   {
     id: 'cartridge',
     label: 'Cartridge',
-    price: CARTRIDGE_PRICE,
     note: 'Refill cartridge for the Regen Pen device.',
   },
   {
     id: 'pen',
     label: 'Pen Package',
-    price: PEN_PRICE,
-    note: 'Complete pre-filled pen, ready to use out of the box.',
+    note: 'Pre-filled pen package for laboratory research.',
   },
 ]
 

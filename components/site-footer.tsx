@@ -1,92 +1,102 @@
+'use client'
+
 import { Mail, MessageCircle, MapPin } from 'lucide-react'
 import { Logo } from '@/components/logo'
 import { Button } from '@/components/ui/button'
+import { ConsultationButton } from '@/components/consultation-button'
+import { RegionSwitcher } from '@/components/region-switcher'
+import { useRegion } from '@/components/region-provider'
+import { CONTACT_EMAIL, regionalSupportText, SUPPORT_COPY } from '@/lib/support-copy'
 
 export function SiteFooter() {
+  const { region, language, href } = useRegion()
+  const copy = SUPPORT_COPY[language].footer
+
   return (
     <footer id="kontak" className="bg-primary text-primary-foreground">
       <div className="mx-auto w-full max-w-6xl px-4 sm:px-6">
         <div className="grid gap-8 border-b border-primary-foreground/15 py-14 lg:grid-cols-2 lg:items-center">
           <div>
             <h2 className="text-balance font-display text-3xl font-bold tracking-tight sm:text-4xl">
-              Ready to order? Start with a free consultation.
+              {copy.title}
             </h2>
             <p className="mt-3 max-w-md text-pretty leading-relaxed text-primary-foreground/80">
-              Our team is ready to help you choose the product and package that
-              fit your research needs.
+              {copy.description}
             </p>
           </div>
           <div className="flex flex-col gap-3 sm:flex-row lg:justify-end">
-            <Button
-              render={<a href="https://wa.me/6280000000000" />}
+            <ConsultationButton
               size="lg"
               className="gap-2 bg-accent text-accent-foreground hover:bg-accent/90"
             >
               <MessageCircle className="size-4" />
-              Chat with Us
-            </Button>
+              {copy.start}
+            </ConsultationButton>
             <Button
-              render={<a href="mailto:contact@regenlongevitylab.com" />}
+              render={<a href={`mailto:${CONTACT_EMAIL}`} />}
               size="lg"
               variant="outline"
               className="gap-2 border-primary-foreground/30 bg-transparent text-primary-foreground hover:bg-primary-foreground/10 hover:text-primary-foreground"
             >
               <Mail className="size-4" />
-              Email Us
+              {copy.email}
             </Button>
           </div>
         </div>
 
         <div className="grid gap-8 py-12 sm:grid-cols-2 lg:grid-cols-4">
           <div className="sm:col-span-2 lg:col-span-1">
-            <Logo variant="light" withTagline />
-            <p className="mt-4 max-w-xs text-sm leading-relaxed text-primary-foreground/70">
-              Laboratory-grade research peptides, researched and tested for
-              reliable results.
+            <Logo variant="light" />
+            <p className="mt-1 text-[0.6rem] font-medium uppercase tracking-[0.18em] text-primary-foreground/70">
+              {copy.tagline}
             </p>
+            <p className="mt-4 max-w-xs text-sm leading-relaxed text-primary-foreground/70">
+              {copy.about}
+            </p>
+            <RegionSwitcher variant="light" className="mt-5" />
           </div>
 
-          <nav aria-label="Products">
+          <nav aria-label={copy.products}>
             <h3 className="font-display text-sm font-semibold uppercase tracking-wider text-primary-foreground/60">
-              Products
+              {copy.products}
             </h3>
             <ul className="mt-4 flex flex-col gap-2 text-sm text-primary-foreground/80">
               <li>
-                <a href="#katalog" className="hover:text-accent">
-                  Peptide Catalog
+                <a href={href('#katalog')} className="hover:text-accent">
+                  {copy.catalog}
                 </a>
               </li>
               <li>
-                <a href="#format" className="hover:text-accent">
-                  Pre-filled Cartridge Version
+                <a href={href('#format')} className="hover:text-accent">
+                  {copy.cartridge}
                 </a>
               </li>
               <li>
-                <a href="#format" className="hover:text-accent">
-                  Pen Version
+                <a href={href('#format')} className="hover:text-accent">
+                  {copy.pen}
                 </a>
               </li>
             </ul>
           </nav>
 
-          <nav aria-label="Company">
+          <nav aria-label={copy.company}>
             <h3 className="font-display text-sm font-semibold uppercase tracking-wider text-primary-foreground/60">
-              Company
+              {copy.company}
             </h3>
             <ul className="mt-4 flex flex-col gap-2 text-sm text-primary-foreground/80">
               <li>
-                <a href="#kualitas" className="hover:text-accent">
-                  Quality
+                <a href={href('#kualitas')} className="hover:text-accent">
+                  {copy.quality}
                 </a>
               </li>
               <li>
-                <a href="#pengiriman" className="hover:text-accent">
-                  Shipping
+                <a href={href('#pengiriman')} className="hover:text-accent">
+                  {copy.shipping}
                 </a>
               </li>
               <li>
-                <a href="#faq" className="hover:text-accent">
-                  FAQ
+                <a href={href('#faq')} className="hover:text-accent">
+                  {copy.faq}
                 </a>
               </li>
             </ul>
@@ -94,14 +104,16 @@ export function SiteFooter() {
 
           <div>
             <h3 className="font-display text-sm font-semibold uppercase tracking-wider text-primary-foreground/60">
-              Contact
+              {copy.contact}
             </h3>
             <ul className="mt-4 flex flex-col gap-3 text-sm text-primary-foreground/80">
-              <li className="flex items-center gap-2">
-                <Mail className="size-4 text-accent" /> contact@regenlongevitylab.com
+              <li className="flex items-start gap-2">
+                <Mail className="mt-0.5 size-4 shrink-0 text-accent" />
+                <a href={`mailto:${CONTACT_EMAIL}`} className="break-all hover:text-accent">{CONTACT_EMAIL}</a>
               </li>
               <li className="flex items-start gap-2">
-                <MapPin className="mt-0.5 size-4 text-accent" /> Shipping across Europe &amp; worldwide
+                <MapPin className="mt-0.5 size-4 shrink-0 text-accent" />
+                {regionalSupportText(copy.regionShipping, region)}
               </li>
             </ul>
           </div>
@@ -109,10 +121,10 @@ export function SiteFooter() {
 
         <div className="flex flex-col gap-2 border-t border-primary-foreground/15 py-6 text-xs text-primary-foreground/60 sm:flex-row sm:items-center sm:justify-between">
           <p>
-            &copy; {new Date().getFullYear()} Regen. All rights reserved.
+            &copy; {new Date().getFullYear()} Regen. {copy.copyright}
           </p>
           <p className="max-w-lg text-pretty sm:text-right">
-            For laboratory research only.
+            {copy.researchOnly}
           </p>
         </div>
       </div>

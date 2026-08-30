@@ -3,6 +3,8 @@
 import type { ComponentProps } from 'react'
 import { Button } from '@/components/ui/button'
 import { useConsultation } from '@/components/consultation-modal'
+import { useRegion } from '@/components/region-provider'
+import { SUPPORT_COPY } from '@/lib/support-copy'
 
 type ConsultationButtonProps = Omit<ComponentProps<typeof Button>, 'render'> & {
   /** When set, the consultation message is personalized for this product. */
@@ -20,15 +22,16 @@ export function ConsultationButton({
   ...props
 }: ConsultationButtonProps) {
   const { open } = useConsultation()
+  const { language } = useRegion()
   return (
     <Button
       {...props}
       onClick={(e) => {
         onClick?.(e)
-        open(productName)
+        if (!e.defaultPrevented) open(productName)
       }}
     >
-      {children}
+      {children ?? SUPPORT_COPY[language].consultation.start}
     </Button>
   )
 }

@@ -1,44 +1,48 @@
+'use client'
+
 import Image from 'next/image'
 import { ConsultationButton } from '@/components/consultation-button'
 import { Reveal, Stagger, StaggerItem } from '@/components/reveal'
+import { useRegion } from '@/components/region-provider'
+import { catalogCopy } from '@/lib/product-copy'
 
 const formats = [
   {
-    name: 'Cartridge Version',
+    id: 'cartridge',
     image: '/products/cartridge-package.jpeg',
-    body: 'Suitable for customers who have already bought the Pen Package and want to continue their peptide therapy.',
   },
   {
-    name: 'Pen Version',
+    id: 'pen',
     image: '/products/pen-package.jpeg',
-    body: 'Pre-measured and ready to use with no extra steps. Ideal for those who value convenience, consistency, and ease of everyday use.',
   },
-]
+] as const
 
 export function Formats() {
+  const { language } = useRegion()
+  const copy = catalogCopy[language]
+
   return (
-    <section className="bg-secondary py-16 md:py-24">
+    <section id="format" className="bg-secondary py-16 md:py-24">
       <div className="mx-auto w-full max-w-6xl px-4 sm:px-6">
         <Reveal className="mx-auto max-w-2xl text-center">
           <h2 className="heading-gradient text-balance font-display text-3xl font-bold tracking-tight sm:text-4xl">
-            One quality standard. Two ways to use it.
+            {copy.formatsHeading}
           </h2>
           <p className="mt-4 text-pretty leading-relaxed text-muted-foreground">
-            The same quality, a different way to use it. Choose the format that
-            best fits your routine and needs.
+            {copy.formatsBody}
           </p>
         </Reveal>
 
         <Stagger className="mt-12 grid gap-6 md:grid-cols-2">
           {formats.map((format) => (
             <StaggerItem
-              key={format.name}
+              key={format.id}
               className="flex flex-col overflow-hidden rounded-3xl border border-border bg-card"
             >
               <div className="relative aspect-square bg-card">
                 <Image
                   src={format.image || '/placeholder.svg'}
-                  alt={`Regen ${format.name} package contents`}
+                  alt={`Regen — ${copy.variants[format.id].alt}`}
                   fill
                   sizes="(max-width: 768px) 100vw, 50vw"
                   className="object-contain"
@@ -46,10 +50,10 @@ export function Formats() {
               </div>
               <div className="p-6 sm:p-8">
                 <h3 className="font-display text-2xl font-bold text-foreground">
-                  {format.name}
+                  {copy.formats[format.id].name}
                 </h3>
                 <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
-                  {format.body}
+                  {copy.formats[format.id].body}
                 </p>
               </div>
             </StaggerItem>
@@ -61,7 +65,7 @@ export function Formats() {
             size="lg"
             className="bg-accent text-accent-foreground hover:bg-accent/90"
           >
-            Start Free Consultation
+            {copy.talkToTeam}
           </ConsultationButton>
         </div>
       </div>
