@@ -206,3 +206,174 @@
   line-height: 1.2;
   padding-bottom: 0.12em;
 }
+
+/* A stationary frosted surface keeps the moving quality labels crisp. */
+.trust-carousel {
+  position: relative;
+  isolation: isolate;
+  width: 100%;
+  min-width: 0;
+  min-height: 5.25rem;
+  overflow: hidden;
+  border-block: 1px solid rgb(0 63 53 / 10%);
+  color: var(--primary);
+}
+
+.trust-carousel__wash,
+.trust-carousel__surface {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.trust-carousel__wash {
+  z-index: 0;
+  background:
+    radial-gradient(ellipse at 14% 25%, rgb(0 63 53 / 22%), transparent 52%),
+    radial-gradient(ellipse at 77% 80%, rgb(242 106 33 / 16%), transparent 46%),
+    #e8f0ed;
+}
+
+.trust-carousel__surface {
+  z-index: 1;
+  background: rgb(255 255 255 / 64%);
+  -webkit-backdrop-filter: blur(30px);
+  backdrop-filter: blur(30px);
+}
+
+.trust-carousel__viewport {
+  position: relative;
+  z-index: 2;
+  min-width: 0;
+  margin-inline-end: 3.5rem;
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 2rem, #000 calc(100% - 2rem), transparent);
+  mask-image: linear-gradient(to right, transparent, #000 2rem, #000 calc(100% - 2rem), transparent);
+}
+
+.trust-carousel__track {
+  display: flex;
+  width: max-content;
+  gap: 0;
+  animation: trust-carousel-scroll 24s linear infinite;
+  will-change: transform;
+}
+
+.trust-carousel__group {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: space-around;
+  min-width: 100vw;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.trust-carousel__item {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  gap: clamp(2rem, 4vw, 4rem);
+  min-height: 5.25rem;
+  padding-inline: clamp(1.25rem, 3vw, 3rem);
+  font-family: var(--font-archivo), ui-sans-serif, system-ui, sans-serif;
+  font-size: clamp(1.25rem, 2.25vw, 1.5rem);
+  font-weight: 500;
+  line-height: 1.25;
+  white-space: nowrap;
+}
+
+.trust-carousel__separator {
+  width: 1.375rem;
+  height: 1.375rem;
+  flex-shrink: 0;
+  color: var(--accent);
+}
+
+.trust-carousel__toggle {
+  position: absolute;
+  z-index: 3;
+  top: 50%;
+  right: 0.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  transform: translateY(-50%);
+  border: 1px solid rgb(0 63 53 / 18%);
+  border-radius: 50%;
+  background: rgb(255 255 255 / 78%);
+  color: var(--primary);
+  cursor: pointer;
+}
+
+.trust-carousel__toggle:hover {
+  background: #fff;
+}
+
+.trust-carousel__toggle:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+}
+
+.trust-carousel[data-paused='true'] .trust-carousel__track {
+  animation-play-state: paused;
+}
+
+/* Hover pauses only the moving viewport, never the resume control. */
+@media (hover: hover) {
+  .trust-carousel__viewport:hover .trust-carousel__track {
+    animation-play-state: paused;
+  }
+}
+
+@keyframes trust-carousel-scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .trust-carousel__viewport {
+    margin-inline-end: 0;
+    -webkit-mask-image: none;
+    mask-image: none;
+  }
+
+  .trust-carousel__track {
+    display: block;
+    width: 100%;
+    animation: none;
+    transform: none;
+    will-change: auto;
+  }
+
+  .trust-carousel__group {
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
+    min-width: 0;
+    padding: 0.5rem 0.75rem;
+  }
+
+  .trust-carousel__item {
+    flex-shrink: 1;
+    gap: 1rem;
+    min-width: 0;
+    min-height: 3rem;
+    max-width: 100%;
+    padding: 0.625rem 1rem;
+    font-size: 1.125rem;
+    white-space: normal;
+  }
+
+  .trust-carousel__group--duplicate,
+  .trust-carousel__toggle {
+    display: none;
+  }
+}

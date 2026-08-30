@@ -58,6 +58,24 @@ The validated URL also sets the server-rendered HTML language through the
 Set `NEXT_PUBLIC_SITE_URL` to the public production origin for canonical links;
 otherwise the Vercel production URL is used, or localhost during local development.
 
+### Frosted quality carousel
+
+Each regional hero ends with a full-width, translucent scrolling quality strip
+before the catalog. The stationary Regen-green/orange haze and frosted surface
+are separate from the moving text, so the text and sparkle icons remain sharp.
+`lib/trust-carousel-copy.ts` owns the four English brand labels and the localized
+EN/MS/ID accessibility controls. The labels are **Endotoxin tested**, **Research
+grade**, **Batch-specific COA**, and **HPLC tested**; no customer count, ownership,
+delivery, sterility, or blanket purity-percentage claim is imported from the
+visual reference.
+
+The strip has a pause/resume button and pauses temporarily while hovering over
+the moving text. A reduced-motion preference removes the animation and shows
+all four items in a wrapping static list. Only one copy is exposed to screen
+readers; the second is a decorative duplicate for the seamless loop. The
+animation and frosted styling are scoped to `.trust-carousel` in `app/globals.css`.
+No reference-site image or recording is shipped with the website.
+
 ### Prices and catalog assets
 
 `lib/region-pricing.ts` is the single source for approved local prices. Indonesian

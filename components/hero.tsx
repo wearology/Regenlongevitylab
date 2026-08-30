@@ -1,13 +1,11 @@
 "use client"
 
-import { FlaskConical, Headset, Truck } from "lucide-react"
 import { motion, type Variants } from "framer-motion"
 import { Button } from "@/components/ui/button"
 import { ConsultationButton } from "@/components/consultation-button"
 import { useRegion } from "@/components/region-provider"
+import { TrustCarousel } from "@/components/trust-carousel"
 import { HOME_TAGLINE, homeCopy } from "@/lib/home-copy"
-
-const trustIcons = [FlaskConical, Headset, Truck]
 
 const container: Variants = {
   hidden: {},
@@ -113,28 +111,9 @@ export function Hero() {
             </video>
           </motion.div>
         </div>
-
-        {/* Trust badges span the full width beneath the hero */}
-        <motion.ul
-          className="mt-12 grid gap-4 sm:grid-cols-3"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1], delay: 0.5 }}
-        >
-          {copy.hero.trust.map((label, index) => {
-            const Icon = trustIcons[index]
-            return (
-              <li
-                key={label}
-                className="flex items-center gap-3 rounded-xl border border-border/70 bg-white/70 px-4 py-3 shadow-sm backdrop-blur-sm"
-              >
-                <Icon className="size-5 shrink-0 text-accent" aria-hidden="true" />
-                <span className="text-sm text-foreground/80">{label}</span>
-              </li>
-            )
-          })}
-        </motion.ul>
       </div>
+      {/* Full-bleed frosted quality strip between the hero and catalog. */}
+      <TrustCarousel />
     </section>
   )
 }
