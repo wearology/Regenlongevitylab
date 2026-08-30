@@ -204,7 +204,7 @@ export const catalogCopy: Record<Language, CatalogCopy> = {
     variants: {
       basic: { label: 'Paket Basic', note: 'Tanyakan isi Paket Basic dan detail produknya ke tim kami.', alt: 'ilustrasi cartridge, bukan foto isi Paket Basic' },
       cartridge: { label: 'Cartridge Set', note: 'Cartridge refill untuk Regen Pen yang kompatibel.', alt: 'isi cartridge set' },
-      pen: { label: 'Paket Pen', note: 'Pen yang sudah terisi, khusus untuk riset laboratorium.', alt: 'isi paket pen' },
+      pen: { label: 'Paket Pen', note: 'Pen yang sudah terisi, untuk keperluan riset anda', alt: 'isi paket pen' },
     },
     imageAlt: 'cartridge untuk riset laboratorium',
     formatsHeading: 'Standar kualitas yang sama. Tiga pilihan untuk riset.',
