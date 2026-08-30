@@ -4,7 +4,7 @@ import { normalizeCode, verifyCode } from '@/lib/verify-codes'
 
 // Keep verification pages hidden from search engines and out of the sitemap.
 export const metadata: Metadata = {
-  title: 'Product Authenticity — Lorenic',
+  title: 'Product Authenticity — Regen',
   robots: { index: false, follow: false },
 }
 

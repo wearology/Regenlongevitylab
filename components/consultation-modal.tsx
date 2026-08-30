@@ -21,9 +21,9 @@ import {
 } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 
-// Official Lorenic consultation contact.
+// Official Regen consultation contact.
 // Temporary: consultations run over email instead of WhatsApp.
-const CONTACT_EMAIL = 'contact@lorenic.com'
+const CONTACT_EMAIL = 'contact@regenlongevitylab.com'
 
 // Country dial codes offered in the phone field. Indonesia is the default.
 const COUNTRIES = [
@@ -126,8 +126,8 @@ function ConsultationModal({
     // Personalize the message when the consultation was started from a
     // specific product page; otherwise use the general consultation intro.
     const body = productName
-      ? `Hi Lorenic, I'm interested in ${productName}. I'd like more information about this product. My contact number is ${fullPhone}.`
-      : `Hi Lorenic, I'd like to start a consultation. My contact number is ${fullPhone}.`
+      ? `Hi Regen, I'm interested in ${productName}. I'd like more information about this product. My contact number is ${fullPhone}.`
+      : `Hi Regen, I'd like to start a consultation. My contact number is ${fullPhone}.`
     const subject = productName
       ? `Consultation request — ${productName}`
       : 'Consultation request'
@@ -211,7 +211,7 @@ function ConsultationModal({
               <p className="mt-1 text-sm text-primary-foreground/80">
                 {step === 'form'
                   ? 'Please read before starting your consultation.'
-                  : 'Choose how you’d like to email Lorenic.'}
+                  : 'Choose how you’d like to email Regen.'}
               </p>
             </div>
 
@@ -232,7 +232,7 @@ function ConsultationModal({
               </div>
 
               <p className="mt-3.5 text-sm leading-relaxed text-muted-foreground">
-                Lorenic prioritizes quality, scientific support, and customer
+                Regen prioritizes quality, scientific support, and customer
                 care over competing on price. Every consultation includes
                 guidance before purchase and ongoing after-sales support.
               </p>

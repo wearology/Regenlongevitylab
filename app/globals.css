@@ -5,8 +5,8 @@
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
-  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
-  --font-display: var(--font-poppins), ui-sans-serif, system-ui, sans-serif;
+  --font-sans: var(--font-ibm-plex-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-archivo), ui-sans-serif, system-ui, sans-serif;
   --color-sidebar-ring: var(--sidebar-ring);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
@@ -51,33 +51,33 @@
 
 :root {
   color-scheme: light;
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.24 0.06 264);
+  --background: #ffffff;
+  --foreground: #17221f;
   --card: oklch(1 0 0);
-  --card-foreground: oklch(0.24 0.06 264);
+  --card-foreground: #17221f;
   --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.24 0.06 264);
-  --primary: oklch(0.29 0.12 264);
-  --primary-foreground: oklch(0.99 0 0);
-  --secondary: oklch(0.96 0.01 264);
-  --secondary-foreground: oklch(0.29 0.12 264);
-  --muted: oklch(0.965 0.008 264);
-  --muted-foreground: oklch(0.5 0.03 264);
-  --accent: oklch(0.67 0.19 44);
-  --accent-foreground: oklch(0.99 0 0);
+  --popover-foreground: #17221f;
+  --primary: #003f35;
+  --primary-foreground: #ffffff;
+  --secondary: #e8f0ed;
+  --secondary-foreground: #003f35;
+  --muted: #e8f0ed;
+  --muted-foreground: #53625e;
+  --accent: #f26a21;
+  --accent-foreground: #ffffff;
   /* Verification success green — used by the authenticity confirmation. */
   --success: oklch(0.62 0.17 152);
   --success-foreground: oklch(0.99 0 0);
   --destructive: oklch(0.577 0.245 27.325);
-  --border: oklch(0.9 0.012 264);
-  --input: oklch(0.9 0.012 264);
-  --ring: oklch(0.29 0.12 264);
-  --chart-1: oklch(0.29 0.12 264);
-  --chart-2: oklch(0.67 0.19 44);
-  --chart-3: oklch(0.5 0.1 250);
-  --chart-4: oklch(0.75 0.13 55);
-  --chart-5: oklch(0.4 0.08 264);
-  --radius: 0.75rem;
+  --border: #d5e1dd;
+  --input: #c9d8d3;
+  --ring: #003f35;
+  --chart-1: #003f35;
+  --chart-2: #f26a21;
+  --chart-3: #557b72;
+  --chart-4: #9cb7b0;
+  --chart-5: #17221f;
+  --radius: 0.35rem;
   --sidebar: oklch(0.985 0 0);
   --sidebar-foreground: oklch(0.24 0.06 264);
   --sidebar-primary: oklch(0.29 0.12 264);
@@ -169,14 +169,13 @@
   }
 }
 
-/* Premium blue gradient for section (H2) headings on light/white backgrounds.
-   Deep navy to brand blue (#2F74DE) — clearly noticeable yet refined. */
+/* Regen Forest heading treatment for light surfaces. */
 @utility heading-gradient {
   background-image: linear-gradient(
     120deg,
-    #10214a 0%,
-    #1c3f88 45%,
-    #2f74de 100%
+    #17221f 0%,
+    #003f35 60%,
+    #0b6455 100%
   );
   -webkit-background-clip: text;
   background-clip: text;
@@ -186,14 +185,13 @@
   padding-bottom: 0.12em;
 }
 
-/* Premium light gradient for headings on dark/navy backgrounds.
-   White to brand accent (#F09656) — subtle, warm, and readable. */
+/* Clinical White to Signal Orange for headings on Regen Forest. */
 @utility heading-gradient-light {
   background-image: linear-gradient(
     120deg,
     #ffffff 0%,
-    #ffe9d8 55%,
-    #f09656 100%
+    #ffffff 72%,
+    #f26a21 100%
   );
   -webkit-background-clip: text;
   background-clip: text;

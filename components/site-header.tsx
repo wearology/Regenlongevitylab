@@ -25,7 +25,7 @@ export function SiteHeader({ forceSolid = false }: { forceSolid?: boolean }) {
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
 
-  // "Solid" = frosted opaque state with the blue logo.
+  // "Solid" = frosted opaque state with the forest-green logo.
   // Mobile menu open also forces the solid state for readability.
   const solid = forceSolid || scrolled || hovered || open
 
@@ -56,8 +56,8 @@ export function SiteHeader({ forceSolid = false }: { forceSolid?: boolean }) {
         )}
       />
       <div className="relative mx-auto flex h-16 w-full max-w-6xl items-center justify-between px-4 sm:px-6">
-        <a href="/" className="relative flex items-center" aria-label="Lorenic home">
-          {/* Blue logo (solid state) */}
+        <a href="/" className="relative flex items-center" aria-label="Regen home">
+          {/* Forest logo (solid state) */}
           <Logo
             className={cn(
               'transition-opacity duration-500',

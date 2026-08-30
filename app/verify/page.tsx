@@ -5,7 +5,7 @@ import { Logo } from '@/components/logo'
 import { Button } from '@/components/ui/button'
 
 export const metadata: Metadata = {
-  title: 'Product Authenticity — Lorenic',
+  title: 'Product Authenticity — Regen',
   robots: { index: false, follow: false },
 }
 

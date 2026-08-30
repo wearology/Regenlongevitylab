@@ -38,7 +38,7 @@ export function Formats() {
               <div className="relative aspect-square bg-card">
                 <Image
                   src={format.image || '/placeholder.svg'}
-                  alt={`Lorenic ${format.name} package contents`}
+                  alt={`Regen ${format.name} package contents`}
                   fill
                   sizes="(max-width: 768px) 100vw, 50vw"
                   className="object-contain"

@@ -10,7 +10,7 @@ export function Testimonial() {
             Trusted by athletes and wellness practitioners
           </h2>
           <p className="mt-4 text-pretty leading-relaxed text-muted-foreground">
-            Fitness and regeneration &amp; lifespan practitioners make Lorenic&apos;s
+            Fitness and regeneration &amp; lifespan practitioners make Regen&apos;s
             premium peptides part of their routine.
           </p>
           <p className="mt-2 text-xs text-muted-foreground">

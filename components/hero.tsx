@@ -26,12 +26,12 @@ export function Hero() {
       id="beranda"
       className="relative overflow-hidden text-foreground"
       style={{
-        // Soft light composition: a faint blue-gray behind the copy on the
+        // Soft light composition using Regen Mist behind the copy on the
         // left melting into pure white behind the video on the right, plus a
         // vertical fade to white at the bottom so the hero flows seamlessly
         // into the white product catalogue below with no visible edge.
         background:
-          "linear-gradient(to bottom, rgba(255,255,255,0) 60%, #ffffff 100%), radial-gradient(120% 90% at 88% 20%, rgba(47,116,222,0.06) 0%, rgba(47,116,222,0) 55%), linear-gradient(100deg, #e8eef9 0%, #eef3fb 34%, #f7f9fd 58%, #ffffff 78%)",
+          "linear-gradient(to bottom, rgba(255,255,255,0) 60%, #ffffff 100%), radial-gradient(120% 90% at 88% 20%, rgba(0,63,53,0.06) 0%, rgba(0,63,53,0) 55%), linear-gradient(100deg, #e8f0ed 0%, #eff5f3 38%, #f8fbfa 62%, #ffffff 82%)",
       }}
     >
       <div className="mx-auto max-w-6xl px-4 pb-16 pt-28 sm:px-6 sm:pb-20 sm:pt-32 lg:pb-24">

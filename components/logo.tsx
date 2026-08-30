@@ -1,3 +1,4 @@
+import Image from 'next/image'
 import { cn } from '@/lib/utils'
 
 interface LogoProps {
@@ -11,8 +12,6 @@ export function Logo({
   variant = 'default',
   withTagline = false,
 }: LogoProps) {
-  const wordmarkColor =
-    variant === 'light' ? 'text-primary-foreground' : 'text-primary'
   const taglineColor =
     variant === 'light'
       ? 'text-primary-foreground/70'
@@ -20,20 +19,29 @@ export function Logo({
 
   return (
     <span className={cn('inline-flex flex-col leading-none', className)}>
-      <span className="inline-flex items-center gap-2">
-        <span
+      <span className="relative inline-flex w-fit items-center">
+        <Image
+          src="/brand/regen-logo-green.png"
+          alt="Regen"
+          width={1916}
+          height={821}
+          loading="eager"
           className={cn(
-            'font-display text-2xl font-bold tracking-tight',
-            wordmarkColor,
+            'h-9 w-auto object-contain',
+            variant === 'light' && 'brightness-0 invert',
           )}
-        >
-          Lorenic
-        </span>
-        <span className="flex items-center gap-1" aria-hidden="true">
-          <span className="size-2 rounded-full bg-accent" />
-          <span className="size-2 rounded-full bg-accent" />
-          <span className="size-2 rounded-full bg-accent" />
-        </span>
+        />
+        {variant === 'light' && (
+          <Image
+            src="/brand/regen-logo-green.png"
+            alt=""
+            aria-hidden="true"
+            width={1916}
+            height={821}
+            loading="eager"
+            className="pointer-events-none absolute inset-0 h-9 w-auto object-contain [clip-path:circle(1.85%_at_55.9%_59.62%)]"
+          />
+        )}
       </span>
       {withTagline && (
         <span
@@ -42,7 +50,7 @@ export function Logo({
             taglineColor,
           )}
         >
-          Peptide Science. Researched &amp; Tested.
+          Regenerative Science. Clearly Delivered.
         </span>
       )}
     </span>

@@ -26,7 +26,7 @@ export function SiteFooter() {
               Chat with Us
             </Button>
             <Button
-              render={<a href="mailto:hello@lorenic.com" />}
+              render={<a href="mailto:contact@regenlongevitylab.com" />}
               size="lg"
               variant="outline"
               className="gap-2 border-primary-foreground/30 bg-transparent text-primary-foreground hover:bg-primary-foreground/10 hover:text-primary-foreground"
@@ -98,7 +98,7 @@ export function SiteFooter() {
             </h3>
             <ul className="mt-4 flex flex-col gap-3 text-sm text-primary-foreground/80">
               <li className="flex items-center gap-2">
-                <Mail className="size-4 text-accent" /> hello@lorenic.com
+                <Mail className="size-4 text-accent" /> contact@regenlongevitylab.com
               </li>
               <li className="flex items-start gap-2">
                 <MapPin className="mt-0.5 size-4 text-accent" /> Shipping across Europe &amp; worldwide
@@ -109,7 +109,7 @@ export function SiteFooter() {
 
         <div className="flex flex-col gap-2 border-t border-primary-foreground/15 py-6 text-xs text-primary-foreground/60 sm:flex-row sm:items-center sm:justify-between">
           <p>
-            &copy; {new Date().getFullYear()} Lorenic. All rights reserved.
+            &copy; {new Date().getFullYear()} Regen. All rights reserved.
           </p>
           <p className="max-w-lg text-pretty sm:text-right">
             For laboratory research only.

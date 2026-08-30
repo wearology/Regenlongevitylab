@@ -1,31 +1,32 @@
 import { Analytics } from '@vercel/analytics/next'
 import type { Metadata, Viewport } from 'next'
-import { Inter, Poppins } from 'next/font/google'
+import { Archivo, IBM_Plex_Sans } from 'next/font/google'
 import { LoadingScreen } from '@/components/loading-screen'
 import { SmoothScroll } from '@/components/smooth-scroll'
 import { ConsultationProvider } from '@/components/consultation-modal'
 import './globals.css'
 
-const inter = Inter({
+const ibmPlexSans = IBM_Plex_Sans({
   subsets: ['latin'],
-  variable: '--font-inter',
+  weight: ['400', '500', '600', '700'],
+  variable: '--font-ibm-plex-sans',
   display: 'swap',
 })
 
-const poppins = Poppins({
+const archivo = Archivo({
   subsets: ['latin'],
   weight: ['500', '600', '700', '800'],
-  variable: '--font-poppins',
+  variable: '--font-archivo',
   display: 'swap',
 })
 
 export const metadata: Metadata = {
-  title: 'Lorenic — Peptide Science. Researched & Tested.',
+  title: 'Regen — Regenerative Science. Clearly Delivered.',
   description:
-    'Lorenic provides laboratory-grade research peptides with independent European lab testing, cold-chain shipping, and 24/7 aftersales support.',
+    'Regen develops and delivers advanced peptide therapies with uncompromising quality, traceability, and clinical precision.',
   generator: 'v0.app',
   keywords: [
-    'Lorenic',
+    'Regen',
     'peptide',
     'research peptides',
     'retatrutide',
@@ -34,7 +35,7 @@ export const metadata: Metadata = {
     'European Pharmacopoeia',
   ],
   openGraph: {
-    title: 'Lorenic — Peptide Science. Researched & Tested.',
+    title: 'Regen — Regenerative Science. Clearly Delivered.',
     description:
       'Laboratory-grade research peptides with independent European lab testing and cold-chain shipping.',
     type: 'website',
@@ -45,7 +46,7 @@ export const viewport: Viewport = {
   width: 'device-width',
   initialScale: 1,
   maximumScale: 1,
-  themeColor: '#0d2456',
+  themeColor: '#003f35',
 }
 
 export default function RootLayout({
@@ -56,7 +57,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`light bg-background ${inter.variable} ${poppins.variable}`}
+      className={`light bg-background ${ibmPlexSans.variable} ${archivo.variable}`}
     >
       <body className="font-sans antialiased">
         <LoadingScreen />

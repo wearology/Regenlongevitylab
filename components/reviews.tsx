@@ -27,7 +27,7 @@ const reviews = [
     detail: '26, Content Creator',
   },
   {
-    body: 'As a practitioner I need to see documentation, not marketing. Lorenic sent the Certificate of Analysis without me even having to ask twice. That earns trust.',
+    body: 'As a practitioner I need to see documentation, not marketing. Regen sent the Certificate of Analysis without me even having to ask twice. That earns trust.',
     initial: 'H',
     name: 'Dr. Hannah',
     detail: '39, Physician',
@@ -64,7 +64,7 @@ export function Reviews() {
       <div className="mx-auto w-full max-w-6xl px-4 sm:px-6">
         <Reveal className="mx-auto max-w-2xl text-center">
           <h2 className="heading-gradient text-balance font-display text-3xl font-bold tracking-tight sm:text-4xl">
-            What they say about Lorenic
+            What they say about Regen
           </h2>
           <div className="mt-4 flex items-center justify-center gap-2">
             <span className="flex" aria-hidden="true">

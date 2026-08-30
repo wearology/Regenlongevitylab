@@ -10,15 +10,15 @@ const faqs = [
     a: 'Peptides are short chains of amino acids that act as biological signals. In the context of research compounds, peptides are studied to understand how the body responds to processes such as recovery, metabolism, performance, and healthy aging.',
   },
   {
-    q: 'What makes Lorenic different from other peptide suppliers?',
-    a: 'Lorenic focuses on precision, batch quality, and support. Every product is prepared with COA documentation, cold-chain handling, and clear usage instructions before purchase.',
+    q: 'What makes Regen different from other peptide suppliers?',
+    a: 'Regen focuses on precision, batch quality, and support. Every product is prepared with COA documentation, cold-chain handling, and clear usage instructions before purchase.',
   },
   {
-    q: 'Is Lorenic peptide safe?',
+    q: 'Is Regen peptide safe?',
     a: 'We prioritize products that are documented and tested. However, safety of use still depends on individual conditions, objectives, and chosen protocols. Consult with a healthcare professional before starting.',
   },
   {
-    q: 'Are Lorenic peptides compliant with applicable regulations?',
+    q: 'Are Regen peptides compliant with applicable regulations?',
     a: "Regulatory classifications vary depending on the product and jurisdiction. Always review the product information, Certificate of Analysis (COA), and applicable disclaimers before purchasing. If you require information about a specific product's regulatory status, please contact our team.",
   },
   {
@@ -39,14 +39,14 @@ const faqs = [
   },
   {
     q: 'What is the difference between the Pen Version and Pre-filled Cartridge Version?',
-    a: "The Pen Version is designed for greater convenience and measured administration. The pre-filled cartridge version is intended for customers who already own Lorenic's Pen device and wish to continue using it.",
+    a: "The Pen Version is designed for greater convenience and measured administration. The pre-filled cartridge version is intended for customers who already own Regen's Pen device and wish to continue using it.",
   },
   {
-    q: 'Who are Lorenic peptides suitable for?',
-    a: 'Lorenic products are intended for adult users seeking a more targeted approach to regeneration, lifespan, recovery, performance, or wellness research. They are not intended for children, pregnant or breastfeeding women, or use without professional consideration.',
+    q: 'Who are Regen peptides suitable for?',
+    a: 'Regen products are intended for adult users seeking a more targeted approach to regeneration, lifespan, recovery, performance, or wellness research. They are not intended for children, pregnant or breastfeeding women, or use without professional consideration.',
   },
   {
-    q: "What is Lorenic's return policy?",
+    q: "What is Regen's return policy?",
     a: 'Due to the nature of these products (pharmaceutical-grade, cold-chain handled, and single-use), we cannot accept returns for products received in good condition. If a product arrives damaged, is incorrectly shipped, or has a documented quality issue, we will review the case individually. Please contact our team within 24 hours of receiving your order.',
   },
 ]

@@ -141,7 +141,7 @@ export function NotVerifiedResult({ code }: { code?: string }) {
             This code could not be verified.
           </h1>
           <p className="text-pretty text-sm leading-relaxed text-white/90">
-            We could not match this code to an authentic Lorenic product.
+            We could not match this code to an authentic Regen product.
           </p>
         </div>
         <div className="px-6 py-6">
@@ -160,7 +160,7 @@ export function NotVerifiedResult({ code }: { code?: string }) {
             render={<a href={SUPPORT_WHATSAPP} target="_blank" rel="noreferrer" />}
             className="mt-5 w-full bg-primary text-primary-foreground hover:bg-primary/90"
           >
-            Contact the Lorenic Team
+            Contact the Regen Team
           </Button>
         </div>
       </div>

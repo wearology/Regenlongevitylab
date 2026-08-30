@@ -13,7 +13,7 @@ export function RecommendedProducts({ currentSlug }: { currentSlug: string }) {
             Recommended products.
           </h2>
           <p className="mt-4 text-pretty leading-relaxed text-muted-foreground">
-            Other research peptides from the Lorenic catalog you may want to
+            Other research peptides from the Regen catalog you may want to
             explore.
           </p>
         </Reveal>

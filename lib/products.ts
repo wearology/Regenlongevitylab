@@ -22,7 +22,7 @@ export const VARIANTS: ProductVariant[] = [
     id: 'cartridge',
     label: 'Cartridge',
     price: CARTRIDGE_PRICE,
-    note: 'Refill cartridge for the Lorenic Pen device.',
+    note: 'Refill cartridge for the Regen Pen device.',
   },
   {
     id: 'pen',

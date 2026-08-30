@@ -12,7 +12,7 @@ export function ProductCard({ product }: { product: Product }) {
       <div className="relative aspect-square bg-white">
         <Image
           src={product.image || '/placeholder.svg'}
-          alt={`Lorenic ${product.name} pre-filled cartridge`}
+          alt={`Regen ${product.name} pre-filled cartridge`}
           fill
           sizes="(max-width: 640px) 50vw, 25vw"
           className="object-contain transition-transform duration-300 group-hover:scale-105"

@@ -1,7 +1,7 @@
 /**
  * Authenticity verification registry.
  *
- * Each physical Lorenic product ships with an authenticity card carrying a QR
+ * Each physical Regen product ships with an authenticity card carrying a QR
  * code that points at `/verify/<code>`. The page is unlisted (noindex + not
  * linked anywhere in the site navigation), so it is only reachable by scanning
  * the printed code.
@@ -32,7 +32,7 @@ export interface TestPoint {
 }
 
 /**
- * The standard Lorenic analysis panel. Every batch we release is screened
+ * The standard Regen analysis panel. Every batch we release is screened
  * against all five of these before it ships.
  */
 export const TEST_POINTS: TestPoint[] = [
@@ -125,7 +125,7 @@ const RETATRUTIDE_RESULTS: LabResult[] = [
 
 /** Shared fields for every code tied to the June 2026 Retatrutide batch. */
 const RETATRUTIDE_BATCH = {
-  product: 'Lorenic Retatrutide 10mg',
+  product: 'Regen Retatrutide 10mg',
   batch: 'LRRT02',
   manufactured: '06 / 2026',
   expiry: '06 / 2028',

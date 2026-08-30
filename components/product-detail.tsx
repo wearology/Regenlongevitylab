@@ -35,17 +35,17 @@ export function ProductDetail({ product }: { product: Product }) {
   }[] = [
     {
       src: '/products/cartridge-package.jpeg',
-      alt: `Lorenic ${product.name} cartridge package contents`,
+      alt: `Regen ${product.name} cartridge package contents`,
       variant: 'cartridge',
     },
     {
       src: '/products/pen-package.jpeg',
-      alt: `Lorenic ${product.name} pen package contents`,
+      alt: `Regen ${product.name} pen package contents`,
       variant: 'pen',
     },
     {
       src: product.image || '/placeholder.svg',
-      alt: `Lorenic ${product.name} pre-filled cartridge`,
+      alt: `Regen ${product.name} pre-filled cartridge`,
       variant: null,
     },
   ]
