@@ -127,44 +127,6 @@ Changing region does not assert local product approval or guaranteed shipping.
 The team confirms availability, shipping and final pricing. The existing catalog
 photos remain temporary assets until Regen product photography is supplied.
 
-### FDA medicine references (United States)
-
-FDA approval concerns a specific finished medicine, formulation and indication;
-it is not blanket approval of a substance or a Regen research product. The
-reviewed `Tesamorelin 10mg` catalog identity is the only entry in
-`lib/fda-references.ts`. It references **EGRIFTA WR**, a prescription tesamorelin
-medicine listed in the [FDA Purple Book](https://purplebooksearch.fda.gov/index.cfm?blaNo=022505&event=productdetails)
-under BLA 022505. The [FDA label](https://www.accessdata.fda.gov/drugsatfda_docs/label/2025/022505s020lbl.pdf)
-covers its 11.6 mg/vial formulation for excess abdominal fat in adults with
-HIV-associated lipodystrophy, not general weight-loss management.
-
-The compact card badge names the approved medicine and immediately states that
-its approval does **not** cover the Regen research product. Product pages show
-the restricted indication, formulation distinction, official source links and
-verification date. Qualifications remain visible in EN/MS/ID; the English badge
-has English language markup. No FDA logo, approval seal, photograph overlay,
-hidden-only disclaimer, or nested link inside the clickable catalog card is
-used. Recommended cards share the same component. FDA references stay US-specific
-in every region and do not claim local authorization elsewhere.
-
-Reviewed on **2026-08-31**. The other catalog entries receive no badge:
-
-| Catalog entry | Basis for withholding an approval claim |
-| --- | --- |
-| Retatrutide | FDA says it is not a component of an approved drug in its [current GLP-1 alert](https://www.fda.gov/drugs/drug-alerts-and-statements/fdas-concerns-unapproved-glp-1-drugs-used-weight-loss). |
-| CJC-1295 (No DAC) + ipamorelin | Neither constituent is an approved-drug component in FDA's [CJC assessment](https://www.fda.gov/media/183819/download) or [ipamorelin assessment](https://www.fda.gov/media/182088/download); these do not approve the blend. |
-| BPC-157; MOTS-C | FDA's July 2026 [BPC-157](https://www.fda.gov/media/193343/download) and [MOTS-C](https://www.fda.gov/media/193347/download) briefings identify neither as an approved-drug component. |
-| NAD+ | No qualifying therapeutic approval established. The [FDA compounding nomination list](https://www.fda.gov/media/94155/download) places NAD under evaluation, not approval. |
-| GHK-Cu | No qualifying approval established for this research cartridge. FDA distinguishes injectable safety concerns from non-injectable compounding evaluation in its [safety page](https://www.fda.gov/drugs/human-drug-compounding/certain-bulk-drug-substances-use-compounding-may-present-significant-safety-risks) and nomination list. |
-| KLOW80 | Exact blend composition and a matching approved finished medicine have not been established; do not infer them from third-party blend names. |
-
-This is a manually verified snapshot, not a live regulatory feed. New strengths,
-blends or similarly named products do not inherit the reference: the helper
-requires the exact reviewed slug and name. Re-check current FDA records and the
-medicine-specific localized copy before expanding the allowlist. NDC/UNII
-listings, clinical trials, cosmetic use, COAs and compounding eligibility are not
-FDA drug approvals. See [FDA's explanation of approval claims](https://www.fda.gov/consumers/consumer-updates/it-really-fda-approved).
-
 ### Verification
 
 With Node.js 24 and dependencies installed:

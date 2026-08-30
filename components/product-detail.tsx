@@ -12,7 +12,6 @@ import {
   MessageCircle,
 } from 'lucide-react'
 import { ConsultationButton } from '@/components/consultation-button'
-import { FdaMedicineReference } from '@/components/fda-medicine-reference'
 import { useRegion } from '@/components/region-provider'
 import { getProductVariants, type Product, type VariantId } from '@/lib/products'
 import { catalogCopy, getProductCopy } from '@/lib/product-copy'
@@ -159,8 +158,6 @@ export function ProductDetail({ product }: { product: Product }) {
             <p className="mt-4 text-pretty leading-relaxed text-muted-foreground">
               {localized.description}
             </p>
-
-            <FdaMedicineReference product={product} detail />
 
             <div className="mt-5 flex flex-wrap items-baseline gap-2" aria-live="polite">
               <span className="font-display text-2xl font-bold text-primary sm:text-3xl">
