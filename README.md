@@ -47,11 +47,15 @@ All seven regional home pages use the same English `HOME_TAGLINE`:
 stays local: conversational Indonesian and Malaysian Malay, with familiar terms
 such as peptides, batch, COA, cartridge and customer support left in English.
 
-The Indonesian review cards are distinct **sample copy, not real testimonials**.
-They are labeled in the section and on each card, use neutral example IDs, and
-do not show stars, an aggregate rating or a verified-review count. Replace them
-with permissioned, authentic customer feedback before presenting them as reviews;
-do not remove the sample labels or invent customer identities and ratings.
+The Indonesian review cards are natural paraphrases of the nine English/EU-site
+review texts, preserving their topics and order. Their Indonesian names, ages
+and healthcare/professional roles are **fictional sample profiles, not verified
+customer identities or healthcare endorsements**. The section notice and every
+card explicitly label this localization as sample copy; no stars, aggregate
+rating or verified-review count are shown. Use permissioned, authentic feedback
+before presenting these as Indonesian customer reviews, and do not remove the
+fictional-profile disclosures or misattribute the source reviews. English and
+Malay review copy is unchanged.
 
 The validated URL also sets the server-rendered HTML language through the
 [Next.js request-header API](https://nextjs.org/docs/app/api-reference/file-conventions/proxy).
