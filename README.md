@@ -42,6 +42,17 @@ lab-document endpoints are unchanged.
 
 Region definitions live in `lib/regions.ts`. English, Malay and Indonesian copy
 lives in `lib/home-copy.ts`, `lib/product-copy.ts` and `lib/support-copy.ts`.
+All seven regional home pages use the same English `HOME_TAGLINE`:
+“European research-grade peptides, delivered with precision.” Supporting copy
+stays local: conversational Indonesian and Malaysian Malay, with familiar terms
+such as peptides, batch, COA, cartridge and customer support left in English.
+
+The Indonesian review cards are distinct **sample copy, not real testimonials**.
+They are labeled in the section and on each card, use neutral example IDs, and
+do not show stars, an aggregate rating or a verified-review count. Replace them
+with permissioned, authentic customer feedback before presenting them as reviews;
+do not remove the sample labels or invent customer identities and ratings.
+
 The validated URL also sets the server-rendered HTML language through the
 [Next.js request-header API](https://nextjs.org/docs/app/api-reference/file-conventions/proxy).
 Set `NEXT_PUBLIC_SITE_URL` to the public production origin for canonical links;

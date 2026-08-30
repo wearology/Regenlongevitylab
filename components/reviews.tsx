@@ -8,27 +8,34 @@ import { homeCopy } from '@/lib/home-copy'
 export function Reviews() {
   const { language, region } = useRegion()
   const copy = homeCopy[language].reviews
+  const isSample = copy.isSample === true
 
   return (
-    <section id="ulasan" className="bg-secondary py-16 md:py-24">
+    <section id="ulasan" aria-labelledby="reviews-heading" className="bg-secondary py-16 md:py-24">
       <div className="mx-auto w-full max-w-6xl px-4 sm:px-6">
         <Reveal className="mx-auto max-w-2xl text-center">
-          <h2 className="heading-gradient text-balance font-display text-3xl font-bold tracking-tight sm:text-4xl">
+          <h2 id="reviews-heading" className="heading-gradient text-balance font-display text-3xl font-bold tracking-tight sm:text-4xl">
             {copy.heading}
           </h2>
-          <div className="mt-4 flex items-center justify-center gap-2">
-            <span className="flex" aria-hidden="true">
-              {Array.from({ length: 5 }).map((_, i) => (
-                <Star key={i} className="size-5 fill-accent text-accent" />
-              ))}
-            </span>
-            <span className="text-sm font-medium text-muted-foreground">
-              <strong className="text-foreground">
-                {new Intl.NumberFormat(region.locale, { maximumFractionDigits: 1 }).format(4.9)}
-              </strong>{' '}
-              {copy.rating}
-            </span>
-          </div>
+          {isSample ? (
+            <p role="note" className="mt-4 rounded-xl border border-primary/15 bg-background/70 p-4 text-sm leading-relaxed text-muted-foreground">
+              {copy.sampleNotice}
+            </p>
+          ) : (
+            <div className="mt-4 flex items-center justify-center gap-2">
+              <span className="flex" aria-hidden="true">
+                {Array.from({ length: 5 }).map((_, i) => (
+                  <Star key={i} className="size-5 fill-accent text-accent" />
+                ))}
+              </span>
+              <span className="text-sm font-medium text-muted-foreground">
+                <strong className="text-foreground">
+                  {new Intl.NumberFormat(region.locale, { maximumFractionDigits: 1 }).format(4.9)}
+                </strong>{' '}
+                {copy.rating}
+              </span>
+            </div>
+          )}
         </Reveal>
 
         <Stagger className="mt-12 grid gap-4 sm:gap-6 md:grid-cols-2 lg:grid-cols-3">
@@ -37,11 +44,17 @@ export function Reviews() {
               key={review.name + review.detail}
               className="flex flex-col rounded-2xl border border-border bg-card p-6"
             >
-              <span className="flex" aria-hidden="true">
-                {Array.from({ length: 5 }).map((_, i) => (
-                  <Star key={i} className="size-4 fill-accent text-accent" />
-                ))}
-              </span>
+              {isSample ? (
+                <span className="self-start rounded-full bg-secondary px-2.5 py-1 text-xs font-medium text-primary">
+                  {copy.sampleLabel}
+                </span>
+              ) : (
+                <span className="flex" aria-hidden="true">
+                  {Array.from({ length: 5 }).map((_, i) => (
+                    <Star key={i} className="size-4 fill-accent text-accent" />
+                  ))}
+                </span>
+              )}
               <p className="mt-4 flex-1 text-sm leading-relaxed text-foreground/90">
                 {review.body}
               </p>

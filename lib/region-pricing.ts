@@ -37,6 +37,6 @@ export function getRegionalPriceLabel(region: Region, variant: VariantId): strin
   const price = formatRegionPrice(region, variant)
   if (price !== null) return price
   if (region.language === 'ms') return `Tanya harga ${region.currency}`
-  if (region.language === 'id') return `Tanyakan harga ${region.currency}`
+  if (region.language === 'id') return `Tanya harga ${region.currency}`
   return `Request ${region.currency} pricing`
 }

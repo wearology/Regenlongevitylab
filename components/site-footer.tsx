@@ -47,7 +47,7 @@ export function SiteFooter() {
         <div className="grid gap-8 py-12 sm:grid-cols-2 lg:grid-cols-4">
           <div className="sm:col-span-2 lg:col-span-1">
             <Logo variant="light" />
-            <p className="mt-1 text-[0.6rem] font-medium uppercase tracking-[0.18em] text-primary-foreground/70">
+            <p lang="en" className="mt-2 text-xs font-medium leading-relaxed text-primary-foreground/70">
               {copy.tagline}
             </p>
             <p className="mt-4 max-w-xs text-sm leading-relaxed text-primary-foreground/70">

@@ -5,7 +5,7 @@ import { motion, type Variants } from "framer-motion"
 import { Button } from "@/components/ui/button"
 import { ConsultationButton } from "@/components/consultation-button"
 import { useRegion } from "@/components/region-provider"
-import { homeCopy, regionHeroCopy } from "@/lib/home-copy"
+import { HOME_TAGLINE, homeCopy } from "@/lib/home-copy"
 
 const trustIcons = [FlaskConical, Headset, Truck]
 
@@ -21,7 +21,6 @@ const item: Variants = {
 export function Hero() {
   const { region, language } = useRegion()
   const copy = homeCopy[language]
-  const introduction = regionHeroCopy[region.id]
 
   return (
     <section
@@ -59,9 +58,10 @@ export function Hero() {
             </motion.div>
             <motion.h1
               variants={item}
+              lang="en"
               className="mt-5 max-w-xl text-balance font-display text-4xl font-bold leading-[1.1] tracking-tight text-primary sm:text-5xl lg:text-6xl"
             >
-              {introduction.headline} <span className="text-accent">{introduction.accent}</span>
+              {HOME_TAGLINE.headline} <span className="text-accent">{HOME_TAGLINE.accent}</span>
             </motion.h1>
             <motion.p
               variants={item}

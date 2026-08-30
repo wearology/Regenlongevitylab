@@ -1,4 +1,4 @@
-import type { Language, RegionId } from '@/lib/regions'
+import type { Language } from '@/lib/regions'
 
 type HomeCopy = {
   viewCatalog: string
@@ -30,6 +30,9 @@ type HomeCopy = {
   reviews: {
     heading: string
     rating: string
+    isSample?: boolean
+    sampleNotice?: string
+    sampleLabel?: string
     items: readonly { body: string; initial: string; name: string; detail: string }[]
   }
   lab: { label: string; heading: string; body: string }
@@ -37,16 +40,10 @@ type HomeCopy = {
   documents: { heading: string; verify: string }
 }
 
-// Each landing page has its own introduction. These describe the experience,
-// not local product approval, delivery coverage, or clinical availability.
-export const regionHeroCopy: Record<RegionId, { headline: string; accent: string }> = {
-  au: { headline: 'A considered approach to', accent: 'regeneration.' },
-  eu: { headline: 'European research.', accent: 'A new perspective.' },
-  us: { headline: 'Explore the science of', accent: 'your next chapter.' },
-  uk: { headline: 'Regeneration begins with', accent: 'understanding.' },
-  sg: { headline: 'A clearer view of', accent: 'regeneration research.' },
-  my: { headline: 'Terokai sains di sebalik', accent: 'regenerasi.' },
-  id: { headline: 'Kenali sains untuk', accent: 'langkah berikutnya.' },
+// Keep the brand's exact English tagline consistent across all seven regions.
+export const HOME_TAGLINE = {
+  headline: 'European research-grade peptides,',
+  accent: 'delivered with precision.',
 }
 
 export const homeCopy: Record<Language, HomeCopy> = {
@@ -117,59 +114,59 @@ export const homeCopy: Record<Language, HomeCopy> = {
     freeConsultation: 'Konsultasi Percuma',
     startConsultation: 'Mulakan Konsultasi Percuma',
     hero: {
-      trusted: 'Dipercayai dan digunakan oleh pempengaruh, doktor dan pengamal kesejahteraan.',
-      body: 'Peptida gred penyelidikan Eropah untuk pengurangan lemak, pembinaan otot, regenerasi dan jangka hayat, pemulihan serta fokus kognitif — semuanya dalam satu platform.',
-      settings: 'Tetapan wilayah anda',
+      trusted: 'Dipercayai dan digunakan oleh influencer, doktor dan profesional wellness.',
+      body: 'Research-grade peptides dari Eropah untuk fat loss, pembinaan otot, regenerasi dan longevity, recovery serta fokus kognitif — semuanya dalam satu platform.',
+      settings: 'Pilihan region anda',
       trust: [
         'Diuji di makmal sebelum setiap penghantaran.',
-        'Sokongan pelanggan 24/7.',
+        'Customer support 24/7.',
         'Penghantaran selamat dengan suhu terkawal.',
       ],
     },
     principles: {
-      heading: 'Untuk mereka yang serius tentang regenerasi dan jangka hayat',
+      heading: 'Untuk anda yang serius tentang regenerasi dan longevity',
       items: [
-        { title: 'Kualiti Terkawal', body: 'Tiada produk yang tidak jelas asal usulnya. Setiap kelompok dihasilkan di kemudahan pembuatan yang memenuhi piawaian kualiti Eropah, dengan kawalan kualiti yang ketat.' },
-        { title: 'Konsultasi Percuma 24/7', body: 'Pasukan kami membantu anda memilih produk dan protokol yang sesuai sebelum membeli. Tanpa bayaran, tanpa tekanan.' },
-        { title: 'Ketelusan Sepenuhnya', body: 'Spesifikasi produk boleh disahkan bagi setiap pesanan. Anda tahu dengan jelas produk yang anda gunakan.' },
+        { title: 'Kualiti yang Terjaga', body: 'Asal-usul produk jelas. Setiap batch dihasilkan di fasiliti pengeluaran yang memenuhi standard kualiti Eropah, dengan quality control yang ketat.' },
+        { title: 'Konsultasi Percuma 24/7', body: 'Team kami bantu anda pilih produk dan protokol yang sesuai sebelum membeli. Percuma, tanpa paksaan.' },
+        { title: 'Info Produk yang Telus', body: 'Spesifikasi produk boleh disahkan untuk setiap pesanan. Anda tahu dengan jelas apa yang anda gunakan.' },
       ],
     },
     testimonial: {
-      heading: 'Dipercayai oleh atlet dan pengamal kesejahteraan',
-      intro: 'Pengamal kecergasan, regenerasi dan jangka hayat menjadikan peptida premium Regen sebahagian daripada rutin mereka.',
-      disclaimer: '*Pengalaman yang dipaparkan ialah pengalaman individu dan tidak semestinya memberikan hasil yang sama untuk semua orang.',
-      quote: '“Saya mula melihat kemajuan semula, dan itu terus mendorong saya.”',
-      body: 'Saya sudah lama berlatih, tetapi baru sekarang saya melihat perubahan yang nyata. Dalam beberapa minggu, tubuh saya kelihatan lebih padat, otot lebih jelas dan saya berasa jauh lebih bertenaga semasa latihan.',
-      detail: 'Pengamal bina badan dan kesejahteraan',
+      heading: 'Dipercayai oleh atlet dan profesional wellness',
+      intro: 'Peptides premium Regen menjadi sebahagian daripada rutin mereka yang aktif dalam fitness, regenerasi dan longevity.',
+      disclaimer: '*Ini pengalaman individu. Hasilnya mungkin berbeza untuk setiap orang.',
+      quote: '“Saya dah nampak progress semula, dan itu buat saya terus bersemangat.”',
+      body: 'Saya dah lama training, tapi baru sekarang nampak perubahan yang nyata. Dalam beberapa minggu, badan nampak lebih padat, otot lebih jelas dan saya rasa jauh lebih bertenaga masa training.',
+      detail: 'Bodybuilding & wellness practitioner',
     },
     journey: {
-      heading: 'Perjalanan regenerasi dan jangka hayat anda bermula di sini',
-      intro: 'Daripada konsultasi pertama hingga panduan penggunaan, kami membantu memudahkan setiap langkah supaya anda boleh memberi tumpuan kepada matlamat anda.',
+      heading: 'Perjalanan regenerasi dan longevity anda bermula di sini',
+      intro: 'Dari konsultasi pertama sampai panduan penggunaan, kami bantu mudahkan setiap langkah supaya anda boleh fokus pada matlamat anda.',
       steps: [
-        { title: 'Tentukan matlamat anda', body: 'Setiap orang mempunyai sasaran berbeza — regenerasi dan jangka hayat, pengurangan lemak, pemulihan, prestasi atau sokongan kognitif. Kami membantu memperjelas matlamat anda sebelum mencadangkan langkah seterusnya.' },
-        { title: 'Dapatkan cadangan yang bersesuaian', body: 'Berdasarkan matlamat dan keadaan anda, pasukan kami menerangkan pilihan produk, protokol dan pendekatan yang paling relevan. Tiada yuran konsultasi dan tiada kewajipan untuk membeli.' },
-        { title: 'Bermula dengan yakin', body: 'Selepas memilih protokol yang sesuai, anda menerima panduan penggunaan, dokumentasi produk dan sokongan penuh daripada pasukan kami sepanjang proses.' },
+        { title: 'Tetapkan matlamat anda', body: 'Setiap orang ada matlamat berbeza — regenerasi dan longevity, fat loss, recovery, prestasi atau sokongan kognitif. Kami bantu anda jelaskan matlamat itu sebelum cadangkan langkah seterusnya.' },
+        { title: 'Dapatkan cadangan yang sesuai', body: 'Berdasarkan matlamat dan keadaan anda, team kami terangkan pilihan produk, protokol dan pendekatan yang paling relevan. Konsultasi percuma, dan anda tak perlu membeli.' },
+        { title: 'Bermula dengan yakin', body: 'Bila anda dah pilih protokol yang sesuai, kami sediakan panduan penggunaan, dokumen produk dan support penuh sepanjang proses.' },
       ],
     },
     reviews: {
       heading: 'Apa kata mereka tentang Regen',
       rating: 'daripada 107 ulasan yang disahkan',
       items: [
-        { body: 'Konsultasi itulah yang meyakinkan saya. Saya datang dengan senarai soalan dan akhirnya benar-benar memahami apa yang saya pesan, bukan sekadar meneka.', initial: 'M', name: 'Marcus', detail: '43, Pengurus Operasi' },
-        { body: 'Kotak tiba dalam keadaan sejuk, pek ais masih beku dan semua bungkusan masih tertutup rapat. Sejujurnya, saya tidak menyangka pembungkusannya begitu teliti.', initial: 'C', name: 'Chloe', detail: '29, Pakar Strategi Jenama' },
-        { body: 'Saya pernah berurusan dengan beberapa pembekal selama bertahun-tahun dan kebanyakannya senyap selepas pembayaran. Pasukan ini masih menghubungi saya selepas pesanan tiba.', initial: 'D', name: 'Daniel', detail: '47, Pengarah Jualan' },
-        { body: 'Sejujurnya saya agak ragu-ragu pada mulanya, tetapi seluruh proses terasa meyakinkan. Kod pengesahan sah dan buku panduannya mudah diikuti.', initial: 'K', name: 'Kayla', detail: '26, Pencipta Kandungan' },
-        { body: 'Sebagai pengamal, saya perlu melihat dokumentasi, bukan pemasaran. Regen menghantar Sijil Analisis tanpa saya perlu meminta berkali-kali. Itu membina kepercayaan.', initial: 'H', name: 'Dr. Hannah', detail: '39, Doktor' },
-        { body: 'Persediaan pen memang mudah. Setiap klik tepat, jadi saya sentiasa tahu tetapan dos saya.', initial: 'R', name: 'Ryan', detail: '34, Jurulatih Peribadi' },
-        { body: 'Apabila penghantaran saya tertangguh, pasukan sokongan membalas dalam beberapa minit, terus memaklumkan perkembangannya dan menyelesaikan masalah itu. Perkara kecil begini sangat bermakna.', initial: 'G', name: 'Grace', detail: '37, Pengurus Projek' },
-        { body: 'Saya sudah mengikuti protokol saya selama beberapa bulan. Konsistensi antara kelompok membuatkan saya terus memilih Regen. Tiada kejutan.', initial: 'N', name: 'Nathan', detail: '41, Jurutera Perisian' },
-        { body: 'Bersih, mudah dan tiba tepat pada masanya. Pembungkusan rantaian sejuknya memang mengagumkan.', initial: 'E', name: 'Emma', detail: '24, Pakar Pemakanan' },
+        { body: 'Yang buat saya yakin ialah konsultasinya. Saya datang dengan senarai soalan dan akhirnya faham betul apa yang saya order, bukan sekadar agak-agak.', initial: 'M', name: 'Marcus', detail: '43, Pengurus Operasi' },
+        { body: 'Kotak sampai dalam keadaan sejuk, ice pack masih beku dan semuanya masih sealed. Saya memang tak sangka packaging dia seteliti ini.', initial: 'C', name: 'Chloe', detail: '29, Pakar Strategi Jenama' },
+        { body: 'Saya dah cuba beberapa supplier selama bertahun-tahun. Kebanyakannya terus senyap selepas saya bayar, tapi team ini masih follow up lepas order sampai.', initial: 'D', name: 'Daniel', detail: '47, Pengarah Jualan' },
+        { body: 'Jujur, mula-mula saya ragu juga. Tapi seluruh proses rasa meyakinkan. Kod pengesahan pun sah, dan guide book senang nak ikut.', initial: 'K', name: 'Kayla', detail: '26, Pencipta Kandungan' },
+        { body: 'Dalam kerja saya, saya perlukan dokumentasi, bukan sekadar marketing. Regen hantar Certificate of Analysis tanpa saya perlu minta berkali-kali. Itu yang buat saya percaya.', initial: 'H', name: 'Dr. Hannah', detail: '39, Doktor' },
+        { body: 'Pen ini memang senang nak setup. Kliknya tepat, jadi saya sentiasa tahu tetapan dos saya.', initial: 'R', name: 'Ryan', detail: '34, Jurulatih Peribadi' },
+        { body: 'Bila penghantaran saya tertangguh, support balas dalam beberapa minit. Mereka terus bagi update sampai isu itu selesai. Perkara kecil macam ini penting.', initial: 'G', name: 'Grace', detail: '37, Pengurus Projek' },
+        { body: 'Saya dah ikut protokol selama beberapa bulan. Konsistensi dari batch ke batch buat saya terus pilih Regen. Tak ada kejutan.', initial: 'N', name: 'Nathan', detail: '41, Jurutera Perisian' },
+        { body: 'Bersih, tak leceh dan sampai tepat pada masa. Packaging cold-chain dia memang bagus.', initial: 'E', name: 'Emma', detail: '24, Pakar Pemakanan' },
       ],
     },
     lab: {
       label: 'Ujian Makmal',
       heading: 'Diuji di makmal Eropah',
-      body: 'Setiap kelompok yang kami hantar diuji oleh makmal bebas di Eropah mengikut piawaian kualiti Eropah, dengan rujukan kepada Farmakope Eropah (Ph. Eur.) jika berkenaan. Sijil Analisis tersedia bagi setiap pesanan.',
+      body: 'Setiap batch yang kami hantar diuji oleh makmal bebas di Eropah mengikut standard kualiti Eropah, dengan rujukan kepada European Pharmacopoeia (Ph. Eur.) jika berkaitan. Certificate of Analysis (COA) tersedia untuk setiap pesanan.',
     },
     slider: { before: 'Sebelum', after: 'Selepas', label: 'Perbandingan gambar sebelum dan selepas' },
     documents: { heading: 'COA dan dokumen ujian makmal lain', verify: 'Sahkan di laman web Janoshik' },
@@ -179,61 +176,64 @@ export const homeCopy: Record<Language, HomeCopy> = {
     freeConsultation: 'Konsultasi Gratis',
     startConsultation: 'Mulai Konsultasi Gratis',
     hero: {
-      trusted: 'Dipercaya dan digunakan oleh influencer, dokter, dan praktisi kebugaran.',
-      body: 'Peptida berkualitas riset Eropa untuk pengurangan lemak, pembentukan otot, regenerasi dan umur panjang, pemulihan, serta fokus kognitif — semua dalam satu platform.',
-      settings: 'Pengaturan wilayah Anda',
+      trusted: 'Dipercaya dan digunakan oleh influencer, dokter, dan praktisi wellness.',
+      body: 'Research-grade peptides dari Eropa untuk fat loss, pembentukan otot, regenerasi dan longevity, recovery, serta fokus kognitif — semuanya di satu platform.',
+      settings: 'Pilihan region kamu',
       trust: [
-        'Diuji di laboratorium sebelum setiap pengiriman.',
-        'Dukungan pelanggan 24/7.',
-        'Pengiriman aman dengan suhu terkontrol.',
+        'Diuji di lab sebelum setiap pengiriman.',
+        'Customer support 24/7.',
+        'Pengiriman aman dengan suhu terjaga.',
       ],
     },
     principles: {
-      heading: 'Untuk Anda yang serius tentang regenerasi dan umur panjang',
+      heading: 'Buat kamu yang serius soal regenerasi dan longevity',
       items: [
-        { title: 'Kualitas Terkontrol', body: 'Tidak ada produk dengan asal-usul yang tidak jelas. Setiap batch diproduksi di fasilitas manufaktur yang memenuhi standar kualitas Eropa, dengan kontrol kualitas yang ketat.' },
-        { title: 'Konsultasi Gratis 24/7', body: 'Tim kami membantu Anda memilih produk dan protokol yang sesuai sebelum membeli. Tanpa biaya, tanpa tekanan.' },
-        { title: 'Transparansi Penuh', body: 'Spesifikasi produk dapat diverifikasi untuk setiap pesanan. Anda tahu persis produk yang Anda gunakan.' },
+        { title: 'Kualitas yang Terjaga', body: 'Asal-usul produk jelas. Setiap batch dibuat di fasilitas produksi yang memenuhi standar kualitas Eropa, dengan quality control yang ketat.' },
+        { title: 'Konsultasi Gratis 24/7', body: 'Tim kami bantu kamu pilih produk dan protokol yang sesuai sebelum beli. Gratis, tanpa tekanan untuk beli.' },
+        { title: 'Informasi Produk yang Jelas', body: 'Spesifikasi produk bisa kamu verifikasi untuk setiap pesanan. Jadi, kamu tahu persis produk yang kamu gunakan.' },
       ],
     },
     testimonial: {
-      heading: 'Dipercaya oleh atlet dan praktisi kebugaran',
-      intro: 'Praktisi kebugaran, regenerasi, dan umur panjang menjadikan peptida premium Regen bagian dari rutinitas mereka.',
-      disclaimer: '*Pengalaman yang ditampilkan bersifat individual dan tidak selalu memberikan hasil yang sama bagi setiap orang.',
-      quote: '“Progres saya kembali, dan itu membuat saya terus termotivasi.”',
-      body: 'Saya sudah lama berlatih, tetapi baru sekarang melihat perubahan yang nyata. Dalam beberapa minggu, tubuh saya terlihat lebih padat, otot lebih tegas, dan energi saat latihan terasa jauh lebih baik.',
-      detail: 'Praktisi binaraga dan kebugaran',
+      heading: 'Dipercaya atlet dan praktisi wellness',
+      intro: 'Peptides premium Regen jadi bagian dari rutinitas praktisi fitness, regenerasi, dan longevity.',
+      disclaimer: '*Ini pengalaman individu. Hasil tiap orang bisa berbeda.',
+      quote: '“Saya mulai lihat progres lagi, dan itu bikin saya tetap semangat.”',
+      body: 'Saya sudah lama latihan, tapi baru sekarang kelihatan perubahan yang nyata. Dalam beberapa minggu, badan saya terlihat lebih padat, otot lebih tegas, dan energi saat latihan terasa jauh lebih baik.',
+      detail: 'Praktisi bodybuilding dan wellness',
     },
     journey: {
-      heading: 'Perjalanan regenerasi dan umur panjang Anda dimulai di sini',
-      intro: 'Dari konsultasi pertama hingga panduan penggunaan, kami membantu menyederhanakan setiap langkah agar Anda dapat fokus pada tujuan Anda.',
+      heading: 'Mulai perjalanan regenerasi dan longevity kamu di sini',
+      intro: 'Dari konsultasi pertama sampai panduan penggunaan, kami bantu bikin tiap langkah lebih jelas. Jadi, kamu bisa fokus ke tujuanmu.',
       steps: [
-        { title: 'Tentukan tujuan Anda', body: 'Setiap orang memiliki target berbeda — regenerasi dan umur panjang, pengurangan lemak, pemulihan, performa, atau dukungan kognitif. Kami membantu memperjelas tujuan Anda sebelum merekomendasikan langkah berikutnya.' },
-        { title: 'Dapatkan rekomendasi yang sesuai', body: 'Berdasarkan tujuan dan kondisi Anda, tim kami menjelaskan pilihan produk, protokol, dan pendekatan yang paling relevan. Tanpa biaya konsultasi dan tanpa kewajiban membeli.' },
-        { title: 'Mulai dengan yakin', body: 'Setelah memilih protokol yang sesuai, Anda menerima panduan penggunaan, dokumentasi produk, dan dukungan penuh dari tim kami sepanjang proses.' },
+        { title: 'Tentukan tujuan kamu', body: 'Tujuan tiap orang beda — regenerasi dan longevity, fat loss, recovery, performa, atau dukungan kognitif. Kami bantu kamu memperjelas tujuan sebelum bahas langkah berikutnya.' },
+        { title: 'Cari rekomendasi yang sesuai', body: 'Dari tujuan dan kondisi kamu, tim kami jelaskan pilihan produk, protokol, dan pendekatan yang paling sesuai. Konsultasinya gratis, tanpa wajib beli.' },
+        { title: 'Mulai dengan yakin', body: 'Setelah memilih protokol yang sesuai, kamu dapat panduan penggunaan, dokumen produk, dan support penuh dari tim kami sepanjang proses.' },
       ],
     },
     reviews: {
-      heading: 'Apa kata mereka tentang Regen',
-      rating: 'dari 107 ulasan terverifikasi',
+      heading: 'Contoh Komentar untuk Regen',
+      rating: '',
+      isSample: true,
+      sampleNotice: 'Komentar di bawah ini hanya contoh komentar fiktif, bukan testimoni atau ulasan pelanggan asli. Akan diganti setelah ulasan pelanggan tersedia.',
+      sampleLabel: 'Contoh komentar',
       items: [
-        { body: 'Yang meyakinkan saya adalah konsultasinya. Saya datang dengan daftar pertanyaan dan pulang dengan benar-benar memahami apa yang saya pesan, bukan sekadar menebak.', initial: 'M', name: 'Marcus', detail: '43, Manajer Operasional' },
-        { body: 'Kotaknya tiba dalam keadaan dingin, ice pack masih beku, dan semuanya tersegel. Jujur, saya tidak menyangka pengemasannya seteliti ini.', initial: 'C', name: 'Chloe', detail: '29, Ahli Strategi Merek' },
-        { body: 'Selama bertahun-tahun saya sudah mencoba beberapa pemasok dan kebanyakan menghilang setelah pembayaran. Tim ini tetap menanyakan kabar setelah pesanan tiba.', initial: 'D', name: 'Daniel', detail: '47, Direktur Penjualan' },
-        { body: 'Jujur, awalnya saya ragu, tetapi keseluruhan proses terasa meyakinkan. Kode verifikasinya valid dan buku panduannya mudah diikuti.', initial: 'K', name: 'Kayla', detail: '26, Kreator Konten' },
-        { body: 'Sebagai praktisi, saya perlu melihat dokumentasi, bukan pemasaran. Regen mengirimkan Sertifikat Analisis tanpa perlu saya minta berulang kali. Itu membangun kepercayaan.', initial: 'H', name: 'Dr. Hannah', detail: '39, Dokter' },
-        { body: 'Menyiapkan pen benar-benar mudah. Kliknya presisi sehingga saya selalu tahu pengaturan dosis saya.', initial: 'R', name: 'Ryan', detail: '34, Pelatih Pribadi' },
-        { body: 'Saat pengiriman saya tertunda, dukungan pelanggan membalas dalam hitungan menit, terus memberi kabar, dan menyelesaikan masalahnya. Hal-hal kecil seperti itu berarti.', initial: 'G', name: 'Grace', detail: '37, Manajer Proyek' },
-        { body: 'Saya sudah menjalankan protokol selama beberapa bulan. Konsistensi antarbatch membuat saya tetap memilih Regen. Tidak ada kejutan.', initial: 'N', name: 'Nathan', detail: '41, Insinyur Perangkat Lunak' },
-        { body: 'Bersih, tidak ribet, dan tiba tepat waktu. Pengemasan rantai dinginnya benar-benar mengesankan.', initial: 'E', name: 'Emma', detail: '24, Ahli Gizi' },
+        { body: 'Baru lihat-lihat dulu. Katalognya cukup jelas, tapi saya tetap mau tanya detail ke tim sebelum pilih.', initial: '01', name: 'Contoh 01', detail: 'Contoh fiktif, bukan ulasan pelanggan' },
+        { body: 'Suka ada pilihan region. Ganti ke Indonesia, terus lanjut baca pakai bahasa yang lebih santai.', initial: '02', name: 'Contoh 02', detail: 'Contoh fiktif, bukan ulasan pelanggan' },
+        { body: 'Buat saya, yang penting dokumennya bisa dicek. Foto produk saja belum cukup.', initial: '03', name: 'Contoh 03', detail: 'Contoh fiktif, bukan ulasan pelanggan' },
+        { body: 'Kalau banyak istilah baru, mending dijelasin pelan-pelan. Nggak harus kedengeran canggih, yang penting paham.', initial: '04', name: 'Contoh 04', detail: 'Contoh fiktif, bukan ulasan pelanggan' },
+        { body: 'Jujur saya bukan tipe yang langsung checkout. Biasanya bandingin info dulu, baru bawa pertanyaan ke customer support.', initial: '05', name: 'Contoh 05', detail: 'Contoh fiktif, bukan ulasan pelanggan' },
+        { body: 'Tampilan webnya rapi. Cuma buat istilah teknis, saya masih perlu penjelasan yang lebih simpel.', initial: '06', name: 'Contoh 06', detail: 'Contoh fiktif, bukan ulasan pelanggan' },
+        { body: 'COA itu membantu, tapi saya pengin tahu cara bacanya juga. Angka-angkanya jangan cuma ditempel.', initial: '07', name: 'Contoh 07', detail: 'Contoh fiktif, bukan ulasan pelanggan' },
+        { body: 'Enaknya bisa mulai dari katalog, terus catat mana yang mau ditanyain. Nggak buru-buru ambil keputusan.', initial: '08', name: 'Contoh 08', detail: 'Contoh fiktif, bukan ulasan pelanggan' },
+        { body: 'Boleh dong bagian pertanyaan umum dibuat lebih lengkap. Soalnya pertanyaan orang yang baru kenal peptides pasti banyak.', initial: '09', name: 'Contoh 09', detail: 'Contoh fiktif, bukan ulasan pelanggan' },
       ],
     },
     lab: {
-      label: 'Pengujian Laboratorium',
-      heading: 'Diuji di laboratorium Eropa',
-      body: 'Setiap batch yang kami kirim diuji oleh laboratorium independen di Eropa sesuai standar kualitas Eropa, dengan mengacu pada Farmakope Eropa (Ph. Eur.) jika berlaku. Sertifikat Analisis tersedia untuk setiap pesanan.',
+      label: 'Lab Testing',
+      heading: 'Diuji di lab Eropa',
+      body: 'Setiap batch yang kami kirim diuji oleh lab independen di Eropa sesuai standar kualitas Eropa, mengacu pada European Pharmacopoeia (Ph. Eur.) jika berlaku. Certificate of Analysis (COA) tersedia untuk setiap pesanan.',
     },
-    slider: { before: 'Sebelum', after: 'Sesudah', label: 'Perbandingan gambar sebelum dan sesudah' },
-    documents: { heading: 'COA dan dokumen pengujian laboratorium lainnya', verify: 'Verifikasi di situs Janoshik' },
+    slider: { before: 'Before', after: 'After', label: 'Bandingkan foto before dan after' },
+    documents: { heading: 'COA dan dokumen lab testing lainnya', verify: 'Cek di website Janoshik' },
   },
 }

@@ -15,14 +15,14 @@ const copy = {
     note: 'Product availability, shipping and final pricing are confirmed by our team.',
   },
   ms: {
-    change: 'Tukar wilayah', title: 'Wilayah anda. Regen anda.',
-    description: 'Pilih wilayah, bahasa dan mata wang anda.', close: 'Tutup pemilih wilayah', current: 'Wilayah semasa',
-    note: 'Ketersediaan produk, penghantaran dan harga akhir disahkan oleh pasukan kami.',
+    change: 'Tukar region', title: 'Pilih Regen untuk region anda.',
+    description: 'Pilih region, bahasa dan mata wang anda.', close: 'Tutup pilihan region', current: 'Region sekarang',
+    note: 'Team kami akan sahkan stok, penghantaran dan harga akhir sebelum anda order.',
   },
   id: {
-    change: 'Ganti wilayah', title: 'Wilayah Anda. Regen Anda.',
-    description: 'Pilih wilayah, bahasa, dan mata uang Anda.', close: 'Tutup pemilih wilayah', current: 'Wilayah saat ini',
-    note: 'Ketersediaan produk, pengiriman, dan harga akhir dikonfirmasi oleh tim kami.',
+    change: 'Ganti region', title: 'Pilih Regen untuk region kamu.',
+    description: 'Pilih region, bahasa, dan mata uang kamu.', close: 'Tutup pilihan region', current: 'Region sekarang',
+    note: 'Tim kami akan konfirmasi stok, pengiriman, dan harga akhir sebelum kamu order.',
   },
 }
 

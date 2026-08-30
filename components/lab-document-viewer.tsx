@@ -13,13 +13,13 @@ const viewerCopy: Record<Language, { loading: string; error: string; page: strin
     page: 'page',
   },
   ms: {
-    loading: 'Memuatkan dokumen…',
-    error: 'Dokumen ini tidak dapat dipaparkan. Sila hubungi pasukan kami untuk mendapatkan penerangan tentang laporan ini.',
+    loading: 'Sedang buka dokumen…',
+    error: 'Dokumen ini tak dapat dibuka sekarang. Hubungi team kami untuk bantuan membaca laporan ini.',
     page: 'halaman',
   },
   id: {
-    loading: 'Memuat dokumen…',
-    error: 'Dokumen ini tidak dapat ditampilkan. Silakan hubungi tim kami untuk mendapatkan penjelasan tentang laporan ini.',
+    loading: 'Lagi membuka dokumen…',
+    error: 'Dokumennya belum bisa dibuka. Hubungi tim kami, ya, untuk bantuan membaca laporan ini.',
     page: 'halaman',
   },
 }

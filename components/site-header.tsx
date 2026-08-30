@@ -12,8 +12,8 @@ import { RegionSwitcher } from '@/components/region-switcher'
 
 const copy = {
   en: { home: 'Home', quality: 'Quality', reviews: 'Reviews', faq: 'FAQ', catalog: 'View Catalog', main: 'Main navigation', mobile: 'Mobile navigation', close: 'Close menu', open: 'Open menu' },
-  ms: { home: 'Utama', quality: 'Kualiti', reviews: 'Ulasan', faq: 'Soalan Lazim', catalog: 'Lihat Katalog', main: 'Navigasi utama', mobile: 'Navigasi mudah alih', close: 'Tutup menu', open: 'Buka menu' },
-  id: { home: 'Beranda', quality: 'Kualitas', reviews: 'Ulasan', faq: 'Tanya Jawab', catalog: 'Lihat Katalog', main: 'Navigasi utama', mobile: 'Navigasi seluler', close: 'Tutup menu', open: 'Buka menu' },
+  ms: { home: 'Home', quality: 'Kualiti', reviews: 'Review', faq: 'FAQ', catalog: 'Lihat Katalog', main: 'Menu utama', mobile: 'Menu mobile', close: 'Tutup menu', open: 'Buka menu' },
+  id: { home: 'Home', quality: 'Kualitas', reviews: 'Review', faq: 'FAQ', catalog: 'Lihat Katalog', main: 'Menu utama', mobile: 'Menu mobile', close: 'Tutup menu', open: 'Buka menu' },
 }
 
 export function SiteHeader({ forceSolid = false }: { forceSolid?: boolean }) {

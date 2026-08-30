@@ -3,8 +3,8 @@ import { REGIONS, regionPath, type Region } from '@/lib/regions'
 
 const descriptions = {
   en: 'Explore the Regen research catalog, product information and scientific support for your region.',
-  ms: 'Terokai katalog penyelidikan Regen, maklumat produk dan sokongan saintifik untuk Malaysia.',
-  id: 'Jelajahi katalog penelitian Regen, informasi produk, dan dukungan ilmiah untuk Indonesia.',
+  ms: 'Lihat katalog peptides Regen, maklumat produk dan bantuan team kami untuk Malaysia.',
+  id: 'Lihat katalog peptides Regen, detail produk, dan bantuan tim kami untuk Indonesia.',
 }
 
 export function regionAlternates(region: Region, path = ''): Metadata['alternates'] {
