@@ -1,7 +1,9 @@
 // Shared product catalog data used by the homepage catalog, product cards,
 // and the dedicated product pages.
 
-export type VariantId = 'cartridge' | 'pen'
+import type { RegionId } from './regions'
+
+export type VariantId = 'basic' | 'cartridge' | 'pen'
 
 export interface ProductVariant {
   id: VariantId
@@ -13,6 +15,11 @@ export interface ProductVariant {
 // region-pricing.ts so an unapproved currency is never silently converted.
 export const VARIANTS: ProductVariant[] = [
   {
+    id: 'basic',
+    label: 'Basic Set',
+    note: 'Basic package for laboratory research. Confirm package contents with our team.',
+  },
+  {
     id: 'cartridge',
     label: 'Cartridge',
     note: 'Refill cartridge for the Regen Pen device.',
@@ -23,6 +30,10 @@ export const VARIANTS: ProductVariant[] = [
     note: 'Pre-filled pen package for laboratory research.',
   },
 ]
+
+export function getProductVariants(regionId: RegionId): ProductVariant[] {
+  return regionId === 'id' ? VARIANTS : VARIANTS.filter((variant) => variant.id !== 'basic')
+}
 
 export interface Product {
   slug: string

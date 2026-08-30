@@ -1,25 +1,23 @@
 'use client'
 
 import Image from 'next/image'
+import { ImageOff } from 'lucide-react'
 import { ConsultationButton } from '@/components/consultation-button'
 import { Reveal, Stagger, StaggerItem } from '@/components/reveal'
 import { useRegion } from '@/components/region-provider'
 import { catalogCopy } from '@/lib/product-copy'
+import { getProductVariants } from '@/lib/products'
 
-const formats = [
-  {
-    id: 'cartridge',
-    image: '/products/cartridge-package.jpeg',
-  },
-  {
-    id: 'pen',
-    image: '/products/pen-package.jpeg',
-  },
-] as const
+const formatImages = {
+  cartridge: '/products/cartridge-package.jpeg',
+  pen: '/products/pen-package.jpeg',
+} as const
 
 export function Formats() {
-  const { language } = useRegion()
+  const { language, region } = useRegion()
   const copy = catalogCopy[language]
+  const formats = getProductVariants(region.id)
+  const hasBasic = region.id === 'id'
 
   return (
     <section id="format" className="bg-secondary py-16 md:py-24">
@@ -33,21 +31,33 @@ export function Formats() {
           </p>
         </Reveal>
 
-        <Stagger className="mt-12 grid gap-6 md:grid-cols-2">
+        <Stagger className={`mt-12 grid gap-6 ${hasBasic ? 'md:grid-cols-3' : 'md:grid-cols-2'}`}>
           {formats.map((format) => (
             <StaggerItem
               key={format.id}
               className="flex flex-col overflow-hidden rounded-3xl border border-border bg-card"
             >
-              <div className="relative aspect-square bg-card">
-                <Image
-                  src={format.image || '/placeholder.svg'}
-                  alt={`Regen — ${copy.variants[format.id].alt}`}
-                  fill
-                  sizes="(max-width: 768px) 100vw, 50vw"
-                  className="object-contain"
-                />
-              </div>
+              {format.id === 'basic' ? (
+                <div className="flex aspect-square items-center justify-center bg-secondary/60 p-6">
+                  <div className="w-full rounded-2xl border border-dashed border-primary/20 bg-card/70 px-5 py-8 text-center">
+                    <span className="mx-auto flex size-12 items-center justify-center rounded-xl bg-secondary text-primary/70">
+                      <ImageOff className="size-6" aria-hidden="true" />
+                    </span>
+                    <p className="mt-4 text-sm font-semibold text-primary">Foto paket menyusul</p>
+                    <p className="mt-2 text-xs leading-relaxed text-muted-foreground">Isi paket dikonfirmasi tim kami.</p>
+                  </div>
+                </div>
+              ) : (
+                <div className="relative aspect-square bg-card">
+                  <Image
+                    src={formatImages[format.id]}
+                    alt={`Regen — ${copy.variants[format.id].alt}`}
+                    fill
+                    sizes={hasBasic ? '(max-width: 768px) 100vw, 33vw' : '(max-width: 768px) 100vw, 50vw'}
+                    className="object-contain"
+                  />
+                </div>
+              )}
               <div className="p-6 sm:p-8">
                 <h3 className="font-display text-2xl font-bold text-foreground">
                   {copy.formats[format.id].name}

@@ -6,12 +6,15 @@ import { ArrowRight } from 'lucide-react'
 import { useRegion } from '@/components/region-provider'
 import type { Product } from '@/lib/products'
 import { catalogCopy, getProductCopy } from '@/lib/product-copy'
-import { getRegionalPriceLabel } from '@/lib/region-pricing'
+import { getRegionalPriceAmount, getRegionalPriceLabel } from '@/lib/region-pricing'
 
 export function ProductCard({ product }: { product: Product }) {
   const { region, language, href } = useRegion()
   const copy = catalogCopy[language]
   const localized = getProductCopy(product, language)
+  const catalogVariant = region.id === 'id' ? 'basic' : 'cartridge'
+  const showStartingPrice = region.id === 'id' &&
+    getRegionalPriceAmount(region.id, product.slug, catalogVariant) !== null
 
   return (
     <Link
@@ -39,9 +42,10 @@ export function ProductCard({ product }: { product: Product }) {
         </p>
         <div className="mt-auto flex flex-wrap items-baseline gap-x-1.5 gap-y-1 pt-3">
           <span className="font-display text-base font-bold text-primary sm:text-lg">
-            {getRegionalPriceLabel(region, product.slug, 'cartridge')}
+            {showStartingPrice && <><span className="block text-xs font-medium text-muted-foreground">mulai dari</span>{' '}</>}
+            {getRegionalPriceLabel(region, product.slug, catalogVariant)}
           </span>
-          <span className="text-xs text-muted-foreground">/ {copy.variants.cartridge.label.toLowerCase()}</span>
+          <span className="text-xs text-muted-foreground">/ {copy.variants[catalogVariant].label.toLowerCase()}</span>
         </div>
         <span className="mt-4 inline-flex w-full items-center justify-center gap-2 rounded-md bg-secondary px-4 py-2 text-sm font-medium text-secondary-foreground transition-colors group-hover:bg-secondary/70">
           {copy.viewProduct}

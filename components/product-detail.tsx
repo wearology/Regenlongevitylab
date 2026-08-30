@@ -13,22 +13,44 @@ import {
 } from 'lucide-react'
 import { ConsultationButton } from '@/components/consultation-button'
 import { useRegion } from '@/components/region-provider'
-import { VARIANTS, type Product, type VariantId } from '@/lib/products'
+import { getProductVariants, type Product, type VariantId } from '@/lib/products'
 import { catalogCopy, getProductCopy } from '@/lib/product-copy'
 import { getRegionalPriceLabel } from '@/lib/region-pricing'
 
 const uspIcons = [FlaskConical, FileCheck2, Truck, Headset]
 
+type ProductSelection = {
+  regionId: string
+  productSlug: string
+  variant: VariantId
+  activeImage: number
+}
+
 export function ProductDetail({ product }: { product: Product }) {
   const { region, language, href } = useRegion()
   const copy = catalogCopy[language]
   const localized = getProductCopy(product, language)
-  const [variant, setVariant] = useState<VariantId>('cartridge')
+  const variants = getProductVariants(region.id)
+  const defaultSelection: ProductSelection = {
+    regionId: region.id,
+    productSlug: product.slug,
+    variant: variants[0].id,
+    activeImage: region.id === 'id' ? 2 : 0,
+  }
+  const [selection, setSelection] = useState<ProductSelection>(defaultSelection)
+  // A client-side region or product change must not carry an unavailable
+  // package or a different product's gallery selection into the new page.
+  const currentSelection = selection.regionId === region.id &&
+    selection.productSlug === product.slug &&
+    variants.some((v) => v.id === selection.variant)
+    ? selection
+    : defaultSelection
+  const { variant, activeImage } = currentSelection
   const active = copy.variants[variant]
 
-  // Each product has three image slides: the cartridge package (primary on
-  // entry), the pen package, and the individual product shot. The first two
-  // slides stay in sync with the format the customer selects.
+  // Keep the supplied cartridge, pen and individual product photos. Basic
+  // uses the individual cartridge shot as an explicitly labelled illustration,
+  // not an invented image of Basic package contents.
   const gallery: {
     src: string
     alt: string
@@ -51,18 +73,21 @@ export function ProductDetail({ product }: { product: Product }) {
     },
   ]
 
-  const [activeImage, setActiveImage] = useState(0)
-
   function selectVariant(id: VariantId) {
-    setVariant(id)
-    const idx = gallery.findIndex((g) => g.variant === id)
-    if (idx >= 0) setActiveImage(idx)
+    const idx = id === 'basic' ? 2 : gallery.findIndex((g) => g.variant === id)
+    setSelection({
+      ...currentSelection,
+      variant: id,
+      activeImage: idx >= 0 ? idx : activeImage,
+    })
   }
 
   function selectImage(idx: number) {
-    setActiveImage(idx)
-    const v = gallery[idx].variant
-    if (v) setVariant(v)
+    setSelection({
+      ...currentSelection,
+      activeImage: idx,
+      variant: gallery[idx].variant ?? variant,
+    })
   }
 
   return (
@@ -118,7 +143,7 @@ export function ProductDetail({ product }: { product: Product }) {
               })}
             </div>
             <p className="text-xs leading-relaxed text-muted-foreground">
-              {copy.photoNotice}
+              {variant === 'basic' ? copy.basicPhotoNotice ?? copy.photoNotice : copy.photoNotice}
             </p>
           </div>
 
@@ -142,17 +167,19 @@ export function ProductDetail({ product }: { product: Product }) {
                 / {active.label.toLowerCase()}
               </span>
             </div>
-            <p className="mt-1 text-xs text-muted-foreground">
-              {copy.labelReference}: {localized.dosage}
-            </p>
+            {variant !== 'basic' && (
+              <p className="mt-1 text-xs text-muted-foreground">
+                {copy.labelReference}: {localized.dosage}
+              </p>
+            )}
 
             {/* Variant selector */}
             <fieldset className="mt-6">
               <legend className="text-sm font-medium text-foreground">
                 {copy.selectFormat}
               </legend>
-              <div className="mt-3 grid grid-cols-2 gap-3">
-                {VARIANTS.map((v) => {
+              <div className={`mt-3 grid gap-3 ${region.id === 'id' ? 'grid-cols-1 sm:grid-cols-3 lg:grid-cols-1 xl:grid-cols-3' : 'grid-cols-2'}`}>
+                {variants.map((v) => {
                   const selected = v.id === variant
                   return (
                     <button

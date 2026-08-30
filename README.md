@@ -63,31 +63,43 @@ otherwise the Vercel production URL is used, or localhost during local developme
 `lib/region-pricing.ts` is the single source for approved local prices. Indonesian
 prices are product-specific, matched to the exact catalog strength from the
 [`idr pricing` sheet](https://docs.google.com/spreadsheets/d/1kBjIQ498O3CDZ3d2GzyNS8zG6SJDJbM5A7kwonf6qQk/edit?gid=0#gid=0)
-on 2026-08-30. `INDONESIAN_PRODUCT_PRICES` uses column D (**Cartridge Set**) and
-column E (**complete Pen package**), including the evaluated numeric results of
-the sheet formulas. This is a checked-in price snapshot, not a live Sheets sync.
+on 2026-08-30. `INDONESIAN_PRODUCT_PRICES` uses column C (**Paket Basic**),
+column D (**Cartridge Set**) and column E (**complete Pen package**), including
+the evaluated numeric results of the sheet formulas. This is a checked-in price
+snapshot, not a live Sheets sync.
 
-| Existing product | Source row | Cartridge Set (IDR) | Complete Pen package (IDR) |
-| --- | --- | ---: | ---: |
-| Retatrutide 10mg | 4 | 1,199,000 | 1,799,000 |
-| Tesamorelin 10mg | 5 | 1,572,000 | 2,172,000 |
-| GHK-Cu 100mg | 8 | 1,278,000 | 1,878,000 |
-| NAD+ 500mg | 9 | 1,362,000 | 1,962,000 |
-| KLOW80 (KLOW 80mg in the sheet) | 11 | 2,000,000 | 2,600,000 |
-| CJC-1295 (No DAC) 5mg + Ipamorelin 5mg | 12 | 1,298,000 | 1,898,000 |
-| MOTS-C 10mg | 13 | 1,376,000 | 1,976,000 |
-| BPC-157 10mg | 19 | 1,362,000 | 1,962,000 |
+| Existing product | Source row | Paket Basic (IDR) | Cartridge Set (IDR) | Complete Pen package (IDR) |
+| --- | --- | ---: | ---: | ---: |
+| Retatrutide 10mg | 4 | 999,000 | 1,199,000 | 1,799,000 |
+| Tesamorelin 10mg | 5 | 1,372,000 | 1,572,000 | 2,172,000 |
+| GHK-Cu 100mg | 8 | 1,078,000 | 1,278,000 | 1,878,000 |
+| NAD+ 500mg | 9 | 1,162,000 | 1,362,000 | 1,962,000 |
+| KLOW80 (KLOW 80mg in the sheet) | 11 | 1,800,000 | 2,000,000 | 2,600,000 |
+| CJC-1295 (No DAC) 5mg + Ipamorelin 5mg | 12 | 1,098,000 | 1,298,000 | 1,898,000 |
+| MOTS-C 10mg | 13 | 1,176,000 | 1,376,000 | 1,976,000 |
+| BPC-157 10mg | 19 | 1,162,000 | 1,362,000 | 1,962,000 |
 
-Basic Sets (column C), additional strengths, products not already in the catalog,
-and the separate coming-soon sheet are not listed by this pricing-only update.
-An unmapped Indonesian product or format shows a pricing inquiry, never the old
-flat IDR 2,500,000 / 3,500,000 fallback. Indonesian product inquiries retain the
-selected package name. The catalog, detail page, format options and recommended
-product cards all use the same product-aware price helpers.
+Indonesian catalog and recommended cards show the Basic starting price, e.g.
+**mulai dari IDR 999,000 / paket basic**, while retaining each product's existing
+cartridge photo. IDR prices use comma grouping to match this display style.
+Indonesian detail pages start with Basic selected and offer all three packages;
+the chosen package name also follows through to the product inquiry. Basic uses
+the individual cartridge photo with an explicit illustration notice, not a
+claimed photo of Basic contents. Its selection does not show the cartridge's
+click-label reference. The formats overview has a labelled Basic photo placeholder
+until actual package photography is supplied; package contents are not inferred.
+
+Additional strengths, products not already in the catalog, and the separate
+coming-soon sheet are not listed by this pricing update. An unmapped Indonesian
+product or format shows a pricing inquiry without a starting-price claim, never
+the old flat IDR 2,500,000 / 3,500,000 fallback. The catalog, detail page, format
+options and recommended product cards use the same product-aware price helpers.
 
 Other regions are unchanged: EUR prices remain 143 / 200 for cartridge / pen;
 AUD, USD, GBP, SGD and MYR show a localized pricing inquiry, not a guessed
-conversion. Replace a market's `null` values only with approved local amounts.
+conversion. Basic is offered only in Indonesia via `getProductVariants`; the
+other six regions retain their two formats. Replace a market's `null` values
+only with approved local amounts.
 
 Changing region does not assert local product approval or guaranteed shipping.
 The team confirms availability, shipping and final pricing. The existing catalog

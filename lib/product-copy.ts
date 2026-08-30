@@ -50,7 +50,7 @@ const translations: Record<'ms' | 'id', Record<string, LocalizedProductCopy>> = 
     retatrutide: {
       category: 'LEMAK & KOMPOSISI TUBUH',
       tagline: 'Agonis tiga reseptor yang diteliti untuk komposisi tubuh.',
-      description: 'Retatrutide adalah agonis tiga reseptor (GLP-1 / GIP / glukagon). Dalam riset, senyawa ini dipelajari untuk melihat pengaruhnya pada keseimbangan energi, sinyal nafsu makan, dan komposisi tubuh. Format katalognya berupa cartridge 10mg untuk riset laboratorium.',
+      description: 'Retatrutide adalah agonis tiga reseptor (GLP-1 / GIP / glukagon). Dalam riset, senyawa ini dipelajari untuk melihat pengaruhnya pada keseimbangan energi, sinyal nafsu makan, dan komposisi tubuh. Pilihan 10mg di katalog ini khusus untuk riset laboratorium.',
     },
     'cjc-1295-ipamorelin': {
       category: 'OTOT & PERTUMBUHAN',
@@ -75,7 +75,7 @@ const translations: Record<'ms' | 'id', Record<string, LocalizedProductCopy>> = 
     tesamorelin: {
       category: 'LEMAK & PERTUMBUHAN',
       tagline: 'Analog GHRH yang diteliti untuk lemak viseral dan hormon pertumbuhan.',
-      description: 'Tesamorelin adalah analog GHRH yang dibuat lebih stabil. Dalam riset, senyawa ini dipelajari untuk melihat pengaruhnya terhadap pengurangan lemak viseral dan rangsangan hormon pertumbuhan. Format katalognya berupa cartridge 10mg untuk riset laboratorium.',
+      description: 'Tesamorelin adalah analog GHRH yang dibuat lebih stabil. Dalam riset, senyawa ini dipelajari untuk melihat pengaruhnya terhadap pengurangan lemak viseral dan rangsangan hormon pertumbuhan. Pilihan 10mg di katalog ini khusus untuk riset laboratorium.',
     },
     'bpc-157': {
       category: 'RECOVERY & PERBAIKAN JARINGAN',
@@ -112,6 +112,7 @@ type CatalogCopy = {
   researchOnly: string
   priceNotice: string
   photoNotice: string
+  basicPhotoNotice?: string
   recommendedHeading: string
   recommendedBody: string
   usps: [string, string, string, string]
@@ -140,6 +141,7 @@ export const catalogCopy: Record<Language, CatalogCopy> = {
     recommendedBody: 'Explore other research peptides in the Regen catalog.',
     usps: ['Laboratory documentation', 'Batch-specific COA', 'Ask about shipping', 'Research support'],
     variants: {
+      basic: { label: 'Basic Package', note: 'Ask our team to confirm Basic package contents and product details.', alt: 'product illustration, not Basic package contents' },
       cartridge: { label: 'Cartridge', note: 'Refill cartridge for the compatible Regen Pen device.', alt: 'cartridge package contents' },
       pen: { label: 'Pen Package', note: 'Pre-filled pen package for laboratory research.', alt: 'pen package contents' },
     },
@@ -147,6 +149,7 @@ export const catalogCopy: Record<Language, CatalogCopy> = {
     formatsHeading: 'One quality standard. Two research formats.',
     formatsBody: 'Explore cartridge and pen packaging. Our team can confirm format compatibility and availability for your research.',
     formats: {
+      basic: { name: 'Basic Package', body: 'A Basic package option for laboratory research. Ask our team to confirm package contents and product details.' },
       cartridge: { name: 'Cartridge Format', body: 'A refill cartridge for research setups using the compatible Regen Pen device. Ask our team to confirm compatibility and product details.' },
       pen: { name: 'Pen Package', body: 'A pre-filled pen format for laboratory research. Ask our team about package contents, handling information and regional availability.' },
     },
@@ -168,6 +171,7 @@ export const catalogCopy: Record<Language, CatalogCopy> = {
     recommendedBody: 'Kenali peptides lain untuk kajian makmal dalam katalog Regen.',
     usps: ['Dokumen makmal', 'COA per batch', 'Tanya tentang penghantaran', 'Support untuk kajian'],
     variants: {
+      basic: { label: 'Pakej Basic', note: 'Tanya kami tentang isi Pakej Basic dan detail produknya.', alt: 'ilustrasi produk, bukan kandungan Pakej Basic' },
       cartridge: { label: 'Cartridge', note: 'Cartridge refill untuk Regen Pen yang serasi.', alt: 'kandungan pakej cartridge' },
       pen: { label: 'Pakej Pen', note: 'Pen yang sudah diisi, untuk kajian makmal sahaja.', alt: 'kandungan pakej pen' },
     },
@@ -175,6 +179,7 @@ export const catalogCopy: Record<Language, CatalogCopy> = {
     formatsHeading: 'Kualiti yang sama. Dua format untuk kajian.',
     formatsBody: 'Pilih antara cartridge atau pen. Kami boleh bantu semak kesesuaian peranti dan produk yang tersedia untuk kajian anda.',
     formats: {
+      basic: { name: 'Pakej Basic', body: 'Pilihan Pakej Basic untuk kajian makmal. Semak isi pakej dan detail produk dengan team kami.' },
       cartridge: { name: 'Format Cartridge', body: 'Cartridge refill untuk kajian makmal menggunakan Regen Pen yang serasi. Hubungi kami untuk semak kesesuaian peranti dan detail produk.' },
       pen: { name: 'Pakej Pen', body: 'Pen yang sudah diisi untuk kajian makmal. Tanya kami tentang isi pakej, cara pengendalian dan produk yang tersedia di region anda.' },
     },
@@ -192,17 +197,20 @@ export const catalogCopy: Record<Language, CatalogCopy> = {
     researchOnly: 'Khusus riset laboratorium. Tidak untuk dikonsumsi, digunakan pada manusia, atau terapi.',
     priceNotice: 'Harga katalog yang tersedia ditampilkan dalam mata uang pilihanmu. Cek dulu dengan kami untuk harga akhir, produk yang bisa dipesan, pengiriman, dan pajak di region kamu.',
     photoNotice: 'Foto katalog hanya sebagai gambaran. Cek detail produk dan kemasan dengan kami sebelum memesan.',
+    basicPhotoNotice: 'Gambar cartridge ini hanya ilustrasi produk, bukan foto isi Paket Basic. Foto paket menyusul; tanya tim kami untuk detail isinya.',
     recommendedHeading: 'Cek juga produk lainnya.',
     recommendedBody: 'Lihat peptides lainnya untuk riset laboratorium di katalog Regen.',
     usps: ['Dokumen lab', 'COA per batch', 'Tanya soal pengiriman', 'Support riset'],
     variants: {
+      basic: { label: 'Paket Basic', note: 'Tanyakan isi Paket Basic dan detail produknya ke tim kami.', alt: 'ilustrasi cartridge, bukan foto isi Paket Basic' },
       cartridge: { label: 'Cartridge Set', note: 'Cartridge refill untuk Regen Pen yang kompatibel.', alt: 'isi cartridge set' },
       pen: { label: 'Paket Pen', note: 'Pen yang sudah terisi, khusus untuk riset laboratorium.', alt: 'isi paket pen' },
     },
     imageAlt: 'cartridge untuk riset laboratorium',
-    formatsHeading: 'Standar kualitas yang sama. Dua format riset.',
-    formatsBody: 'Pilih antara cartridge atau pen. Kami bantu cek kecocokan perangkat dan ketersediaan produk untuk kebutuhan risetmu.',
+    formatsHeading: 'Standar kualitas yang sama. Tiga pilihan untuk riset.',
+    formatsBody: 'Pilih Paket Basic, Cartridge Set, atau Paket Pen. Tim kami bantu cek detail paket, kecocokan perangkat, dan ketersediaannya untuk kebutuhan risetmu.',
     formats: {
+      basic: { name: 'Paket Basic', body: 'Pilihan Paket Basic untuk kebutuhan riset laboratorium. Isi paket dan detail produknya perlu kamu konfirmasi ke tim kami.' },
       cartridge: { name: 'Cartridge Set', body: 'Cartridge refill untuk riset dengan perangkat Regen Pen yang kompatibel. Kami bantu cek kecocokan perangkat dan detail produknya.' },
       pen: { name: 'Paket Pen', body: 'Pen yang sudah terisi untuk riset laboratorium. Tanyakan isi paket, cara penanganan, dan ketersediaan di region kamu ke tim kami.' },
     },
